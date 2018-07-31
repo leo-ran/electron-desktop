@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
     entry:{
@@ -8,6 +9,10 @@ module.exports = {
     },
     module:{
         rules:[
+            {
+                test:/\.vue$/,
+                use:'vue-loader'
+            },
             {
                 test:/\.less$/,
                 use:['style-loader','css-loader','less-loader']
@@ -33,8 +38,9 @@ module.exports = {
     resolve: {
         alias: {
             '@': path.resolve('src','renderer'),
+            'vue$': 'vue/dist/vue.esm.js'
         },
-        extensions: ['.js', '.json', '.css', '.node']
+        extensions: ['.js', '.vue', '.json', '.css', '.node']
     },
     output:{
         path: path.resolve('dist','electron'),
@@ -48,6 +54,7 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
+        new VueLoaderPlugin()
     ],
     mode: process.env.mode,
     target: 'electron-renderer'

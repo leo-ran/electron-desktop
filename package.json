@@ -44,10 +44,15 @@
     "ora": "^3.0.0",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
+    "vue-loader": "^15.2.6",
+    "vue-template-compiler": "^2.5.16",
     "webpack": "^4.16.3",
     "webpack-dev-server": "^3.1.5",
-    "webpack-hot-middleware": "^2.22.3",
-    "less": "3.0.0"
+    "webpack-hot-middleware": "^2.22.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  }
 }
