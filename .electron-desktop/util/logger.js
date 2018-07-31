@@ -10,25 +10,21 @@ function log(type,content){
 
 function error(text){
     type = chalk.redBright('Error')
-    text = chalk.redBright(text)
     log(type,text)
 }
 
 function success(text){
     type = chalk.greenBright('Success')
-    text = chalk.greenBright(text)
     log(type,text)
 }
 
 function warn(text){
     type = chalk.yellowBright('Warn')
-    text = chalk.yellowBright(text)
     log(type,text)
 }
 
 function info(text){
     type = chalk.blueBright('Info')
-    text = chalk.blueBright(text)
     log(type,text)
 }
 

@@ -9,6 +9,13 @@ module.exports = {
         libraryTarget: 'commonjs2',
         path: path.resolve('dist','electron')
     },
+    node: {
+        __dirname: process.env.mode !== 'production',
+        __filename: process.env.mode !== 'production'
+    },
+    resolve: {
+        extensions: ['.js', '.json', '.node']
+    },
     target: 'electron-main',
-    mode:process.env.mode
+    mode: process.env.mode
 }

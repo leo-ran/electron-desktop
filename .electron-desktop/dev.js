@@ -1,6 +1,5 @@
 const ora = require('ora');
 const path = require('path')
-const chalk = require('chalk')
 
 const webpack = require('webpack')
 const electron = require('electron')
@@ -15,7 +14,6 @@ const mainBundleConfig=require('./config/main')
 const rendererBundleConfig = require('./config/renderer')
 
 
-// logger.logo()
 const spinner = ora('Electron desktop is start running... \n').start();
 
 let mainProcess,
@@ -30,21 +28,21 @@ function createMainBundle() {
             if(err) throw err;
             spinner.succeed('Main bundle is starting!')
             console.log(stats.toString({
+                chunks: false,
                 colors:true
             }))
 
             if (mainProcess && mainProcess.kill){
                 manualRestart = true
+                mainProcess.on('close',function(){
+                    manualRestart = false
+                    spinner.succeed('Process restarted!')
+                })
                 // 杀死electron进程  
                 process.kill(mainProcess.pid)
                 mainProcess = null
 
                 startElectron()
-                spinner.succeed('Process restarting!')
-                // 修改重启状态
-                setTimeout(() => {
-                    manualRestart = false
-                }, 5000)
                 return;
             }
             resolve()
