@@ -9,10 +9,10 @@ function createWindow(){
         height: 563,
         width: 900,
         useContentSize:true,
-        frame: process.platform !== 'darwin' ? false : true,
+        // frame: process.platform !== 'darwin' ? false : true,
         titleBarStyle: 'hiddenInset',
         backgroundColor: "#fff",
-        show: false
+        // show: false
     })
 
     mainWindow.loadURL(winURL)

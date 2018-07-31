@@ -29,10 +29,10 @@ function info(text){
 }
 
 function logo(){
-    cfonts.say('Electron Desktop',{
+    cfonts.say('Electron Desktop Builder',{
         font: 'simple',
         align: 'left', 
-        colors: ['system'],
+        colors: ['magenta'],
         background: 'transparent',
         letterSpacing: 0.1, 
         lineHeight: 0.1,

@@ -4,9 +4,14 @@ const webpack = require('webpack')
 process.env.mode = 'production' //production
 const mainBundleConfig=require('./config/main')
 const rendererBundleConfig = require('./config/renderer')
-
+const del = require('del')
+const path = require('path')
+const logger = require('./util/logger')
 
 const spinner = ora('Electron desktop builder is start running... \n').start();
+
+logger.logo()
+del.sync([path.resolve('dist','electron')])
 
 function buildMain(){
     return new Promise((r,j)=>{
@@ -15,10 +20,10 @@ function buildMain(){
                 j(err)
                 return;
             }
-            console.log(stats.toString({
-                chunks: false,
-                colors:true
-            }))
+            // console.log(stats.toString({
+            //     chunks: false,
+            //     colors:true
+            // }))
             spinner.succeed('main build end!')
             r() 
         })
@@ -32,9 +37,9 @@ function buildRenderer(){
                 j(err)
                 return;
             }
-            console.log(stats.toString({
-                colors:true
-            }))
+            // console.log(stats.toString({
+            //     colors:true
+            // }))
             spinner.succeed('renderer build end!')
             r() 
         })
@@ -45,9 +50,8 @@ function buildRenderer(){
 Promise
     .all([buildMain(),buildRenderer()])
     .then(res=>{
-        //startElectron()
         spinner.succeed('build end!')
     })
     .catch(err=>{
-        console.log(err)
+        throw err;
     })

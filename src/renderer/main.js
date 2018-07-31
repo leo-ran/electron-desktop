@@ -1,11 +1,15 @@
-import { ipcRenderer } from 'electron'
+import Vue from 'vue'
 
-window.onload = function(){
-    document.body.innerHTML = `<h1>test</h1>`
-}
+import App from './App'
+import store from './store'
+import router from './router'
 
-ipcRenderer.on('start',function(e,arg){
-    console.log(arg)
-})  
-
-ipcRenderer.send('start')
+new Vue({
+    el:"#app",
+    template:`<App />`,
+    store,
+    router,
+    components:{
+        App
+    }
+})
