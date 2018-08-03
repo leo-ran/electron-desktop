@@ -28,8 +28,8 @@ function info(text){
     log(type,text)
 }
 
-function logo(){
-    cfonts.say('Electron Desktop Builder',{
+function logo(text){
+    cfonts.say(text || 'Lemonc',{
         font: 'simple',
         align: 'left', 
         colors: ['magenta'],

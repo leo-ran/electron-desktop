@@ -10,12 +10,12 @@ module.exports = {
         path: path.resolve('dist','electron')
     },
     node: {
-        __dirname: process.env.mode !== 'production',
-        __filename: process.env.mode !== 'production'
+        __dirname: process.env.NODE_ENV !== 'production',
+        __filename: process.env.NODE_ENV !== 'production'
     },
     resolve: {
         extensions: ['.js', '.json', '.node']
     },
     target: 'electron-main',
-    mode: process.env.mode
+    mode: process.env.NODE_ENV
 }

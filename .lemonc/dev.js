@@ -8,13 +8,13 @@ const WebpackDevServer = require('webpack-dev-server')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const logger = require('./util/logger')
 
-
-process.env.mode = 'development' //production
+logger.logo()
+process.env.NODE_ENV = 'development' //production
 const mainBundleConfig=require('./config/main')
 const rendererBundleConfig = require('./config/renderer')
 
 
-const spinner = ora('Electron desktop is start running... \n').start();
+const spinner = ora('Lemonc is start running... \n').start();
 
 let mainProcess,
     manualRestart;

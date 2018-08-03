@@ -6,13 +6,13 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run dev",
-    "dev": "node ./.electron-desktop/dev",
-    "build": "node ./.electron-desktop/build && electron-builder",
-    "dist": "node ./.electron-desktop/build"
+    "dev": "node ./.lemonc/dev",
+    "build": "node ./.lemonc/build && electron-builder",
+    "dist": "node ./.lemonc/build"
   },
   "build": {
-    "productName": "electron-desktop",
-    "appId": "org.ranyunlong.app",
+    "productName": "lemonc",
+    "appId": "org.lemonc.app",
     "directories": {
       "output": "build"
     },
@@ -34,12 +34,23 @@
     }
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
     "cfonts": "^2.1.3",
     "chalk": "^2.4.1",
     "css-loader": "^1.0.0",
     "electron": "^2.0.5",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
     "fonts": "^0.0.2",
     "html-webpack-plugin": "^3.2.0",
+    "less": "^3.8.0",
     "less-loader": "^4.1.0",
     "ora": "^3.0.0",
     "style-loader": "^0.21.0",

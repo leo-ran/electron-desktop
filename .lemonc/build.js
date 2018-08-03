@@ -1,14 +1,14 @@
 const ora = require('ora');
 const webpack = require('webpack')
 
-process.env.mode = 'production' //production
+process.env.NODE_ENV = 'production' //production
 const mainBundleConfig=require('./config/main')
 const rendererBundleConfig = require('./config/renderer')
 const del = require('del')
 const path = require('path')
 const logger = require('./util/logger')
 
-const spinner = ora('Electron desktop builder is start running... \n').start();
+const spinner = ora('Lemonc builder is start running... \n').start();
 
 logger.logo()
 del.sync([path.resolve('dist','electron')])
