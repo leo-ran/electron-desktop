@@ -120,7 +120,6 @@ module.exports = {
         extractLess,
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
-        //
         new VueLoaderPlugin()
     ],
     mode: process.env.NODE_ENV,

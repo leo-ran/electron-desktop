@@ -1,5 +1,8 @@
 # lemonc for vue
 
+
+### Application directory
+
 ```
 目录（或者子目录）
 ├─.lemonc                       lemonc 编译器
@@ -30,3 +33,16 @@
 ├─package.json                  包管理
 └─README.md                     自述文件
 ```
+
+### use 
+
+```
+> npm run dev
+```
+
+### build
+
+```shell
+> npm run build
+```
+
