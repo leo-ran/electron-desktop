@@ -4,6 +4,7 @@
   "main": "./dist/electron/main.js",
   "author": "YunlongRan",
   "license": "MIT",
+  "description": "test",
   "scripts": {
     "start": "npm run dev",
     "dev": "node ./.lemonc/dev",
