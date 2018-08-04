@@ -42,5 +42,6 @@
 ### build
 
 ```shell
+> npm i -g electron-builder
 > npm run build
 ```
