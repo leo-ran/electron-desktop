@@ -9,32 +9,32 @@ const webpackHotMiddleware = require('webpack-hot-middleware')
 const logger = require('./util/logger')
 
 
-process.env.mode = 'development' //production
-const mainBundleConfig=require('./config/main')
+process.env.NODE_ENV = 'development'
+const mainBundleConfig = require('./config/main')
 const rendererBundleConfig = require('./config/renderer')
 
-
-const spinner = ora('Electron desktop is start running... \n').start();
+logger.logo()
+const spinner = ora('Lemonc is start running... \n').start();
 
 let mainProcess,
     manualRestart;
-    
+
 
 function createMainBundle() {
-    return new Promise(resolve=>{
-        const compiler  = webpack(mainBundleConfig)
+    return new Promise(resolve => {
+        const compiler = webpack(mainBundleConfig)
         // 监听修改
-        compiler.watch({},(err, stats)=>{
-            if(err) throw err;
+        compiler.watch({}, (err, stats) => {
+            if (err) throw err;
             spinner.succeed('Main bundle is starting!')
             console.log(stats.toString({
                 chunks: false,
-                colors:true
+                colors: true
             }))
 
-            if (mainProcess && mainProcess.kill){
+            if (mainProcess && mainProcess.kill) {
                 manualRestart = true
-                mainProcess.on('close',function(){
+                mainProcess.on('close', function () {
                     manualRestart = false
                     spinner.succeed('Process restarted!')
                 })
@@ -50,10 +50,10 @@ function createMainBundle() {
     })
 }
 
-function createRendererBundle(){
-    return new Promise(resolve=>{
-        rendererBundleConfig.entry.renderer = [path.join(__dirname,'dev-client.js')].concat(rendererBundleConfig.entry.renderer)
-        const compiler = webpack(rendererBundleConfig)  
+function createRendererBundle() {
+    return new Promise(resolve => {
+        rendererBundleConfig.entry.renderer = [path.join(__dirname, 'dev-client.js')].concat(rendererBundleConfig.entry.renderer)
+        const compiler = webpack(rendererBundleConfig)
 
         const server = new WebpackDevServer(
             compiler,
@@ -61,50 +61,50 @@ function createRendererBundle(){
                 contentBase: path.join(__dirname, '../'),
                 compress: true,
                 port: 9080,
-                before (app, ctx) {
-                    app.use(webpackHotMiddleware(compiler,{
-                        log: false, 
-                        heartbeat: 2500 
+                before(app, ctx) {
+                    app.use(webpackHotMiddleware(compiler, {
+                        log: false,
+                        heartbeat: 2500
                     }))
                     resolve()
                 }
             }
         )
-        server.listen(9080,(err)=>{
-            if(err) throw err;
+        server.listen(9080, (err) => {
+            if (err) throw err;
             spinner.succeed(`start server http://localhost:9080`)
         })
     })
 }
 
-function startElectron(){
-    mainProcess = spawn(electron,[path.resolve('dist','electron','main.js')])
-    mainProcess.stdout.on('data',data=>{
+function startElectron() {
+    mainProcess = spawn(electron, [path.resolve('dist', 'electron', 'main.js')])
+    mainProcess.stdout.on('data', data => {
         let text = ''
         data = data.toString().split(/\r?\n/)
         data.map(line => {
             text += `${line}\n`
         })
-        if (/[0-9A-z]+/.test(text)){
+        if (/[0-9A-z]+/.test(text)) {
             logger.info(text)
         }
     })
 
 
     mainProcess.stderr.on('data', data => {
-        let text=''
+        let text = ''
         data = data.toString().split(/\r?\n/)
         data.map(line => {
             text += `${line}\n`
         })
-        if (/[0-9A-z]+/.test(text)){
+        if (/[0-9A-z]+/.test(text)) {
             logger.error(text)
         }
     })
 
     mainProcess.on('close', () => {
         spinner.fail('Process exit!')
-        if(!manualRestart) process.exit()
+        if (!manualRestart) process.exit()
     })
 
     spinner.succeed('Electron is started!')
@@ -112,10 +112,10 @@ function startElectron(){
 
 
 Promise
-    .all([createMainBundle(),createRendererBundle()])
-    .then(res=>{
+    .all([createMainBundle(), createRendererBundle()])
+    .then(res => {
         startElectron()
     })
-    .catch(err=>{
+    .catch(err => {
         console.log(err)
     })

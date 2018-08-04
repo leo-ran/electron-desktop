@@ -1,3 +1,3 @@
-export const mapStates = (state,ownProps) => {
+export const mapStates = (state ) => {
     return state
 }

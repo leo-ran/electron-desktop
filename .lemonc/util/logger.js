@@ -1,6 +1,6 @@
 const chalk = require('chalk')
 const cfonts = require('cfonts')
-function log(type,content){
+function log(type, content) {
     console.log(`┏—${type}—————————————————————`)
     console.log(`\n`)
     console.log(` ${content}`)
@@ -8,36 +8,36 @@ function log(type,content){
     console.log(`┗————————————————————————`)
 }
 
-function error(text){
+function error(text) {
     type = chalk.redBright('Error')
-    log(type,text)
+    log(type, text)
 }
 
-function success(text){
+function success(text) {
     type = chalk.greenBright('Success')
-    log(type,text)
+    log(type, text)
 }
 
-function warn(text){
+function warn(text) {
     type = chalk.yellowBright('Warn')
-    log(type,text)
+    log(type, text)
 }
 
-function info(text){
+function info(text) {
     type = chalk.blueBright('Info')
-    log(type,text)
+    log(type, text)
 }
 
-function logo(){
-    cfonts.say('Electron Desktop Builder',{
+function logo(text) {
+    cfonts.say(text || 'Lemonc', {
         font: 'simple',
-        align: 'left', 
+        align: 'left',
         colors: ['magenta'],
         background: 'transparent',
-        letterSpacing: 0.1, 
+        letterSpacing: 0.1,
         lineHeight: 0.1,
-        space: true,  
-        maxLength: '', 
+        space: true,
+        maxLength: '',
     })
 }
 

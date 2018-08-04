@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { mapActions,mapStates } from './store'
+import { mapActions, mapStates } from './store'
 import { connect } from 'react-redux'
+import './assets/styles/index.less'
 
 import Hellow from './components/Hellow'
 class App extends Component {
@@ -19,4 +20,4 @@ const AppComponent = connect(
     mapActions
 )(App)
 
-export default App
+export default AppComponent
