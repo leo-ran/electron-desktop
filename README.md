@@ -2,6 +2,7 @@
 
 ![image](https://img.shields.io/badge/elctron-^2.0.5-green.svg)
 ![image](https://img.shields.io/badge/vue-^2.5.16-green.svg)
+![image](https://img.shields.io/badge/react-^14.4.1-green.svg)
 ![image](https://img.shields.io/badge/webpack-^4.16.3-green.svg)
 ![image](https://img.shields.io/badge/less-^3.8.0-green.svg)
 ![image](https://img.shields.io/badge/eslint-^5.2.0-green.svg)
