@@ -4,6 +4,7 @@ import App from './App'
 import store from './store'
 import router from './router'
 
+
 new Vue({
     el:"#app",
     template:`<App />`,

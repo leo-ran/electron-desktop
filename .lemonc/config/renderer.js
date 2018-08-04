@@ -1,12 +1,13 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// https://github.com/webpack-contrib/extract-text-webpack-plugin/tree/next
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-module.exports = {
+let production = process.env.NODE_ENV === 'production'
+
+const renderer = {
     entry:{
         renderer: path.resolve('src','renderer','main.js')
     },
@@ -14,15 +15,21 @@ module.exports = {
         rules:[
             {
                 test:/\.js$/,
+                include:path.resolve('src','renderer'),
                 exclude:/node_modules/,
-                use:{
+                use:[{
                     loader:'babel-loader',
                     options:{
                         presets: ['env','es2015'],
                         // https://github.com/vuejs/babel-plugin-transform-vue-jsx
                         plugins: ['transform-runtime','transform-vue-jsx']
                     }
-                }
+                },{
+                    loader:'eslint-loader',
+                    options:{
+                        formatter:require('eslint/lib/formatters/stylish')
+                    }
+                }]
             },
             {
                 test:/\.vue$/,
@@ -30,16 +37,23 @@ module.exports = {
             },
             {
                 test:/\.css$/,
-                use:[
-                    MiniCssExtractPlugin.loader,
+                use:production ? [
+                   MiniCssExtractPlugin.loader,
+                    'style-loader',
+                    'css-loader'
+                ] : [
                     'style-loader',
                     'css-loader'
                 ]
             },
             {
                 test:/\.less$/,
-                use: [
+                use: production ? [
                     MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'less-loader'
+                ] : [
+                    'style-loader',
                     'css-loader',
                     'less-loader'
                 ]
@@ -50,7 +64,7 @@ module.exports = {
                     loader:'url-loader',
                     options: {
                         limit: 10000,
-                        name: 'images/[name].[hash:7].[ext]'
+                        name: production ? 'images/[name].[ext]' :'images/[name].[hash:7].[ext]'
                     }
                 }
             },
@@ -60,7 +74,7 @@ module.exports = {
                     loader:'url-loader',
                     options: {
                         limit: 10000,
-                        name: 'medias/[name].[hash:7].[ext]'
+                        name: production ? 'medias/[name].[ext]' :'medias/[name].[hash:7].[ext]'
                     }
                 }
             },
@@ -70,7 +84,7 @@ module.exports = {
                     loader:'url-loader',
                     options:{
                         limit: 10000,
-                        name: 'fonts/[name].[hash:7].[ext]'
+                        name: production ? 'fonts/[name].[ext]' : 'fonts/[name].[hash:7].[ext]'
                     }
                 }
             }
@@ -90,7 +104,6 @@ module.exports = {
     },
     optimization:{
         minimize:process.env.NODE_ENV == 'production' ? true : false,
-
         // https://www.webpackjs.com/plugins/split-chunks-plugin/
         splitChunks: process.env.NODE_ENV == 'production' ? {
             cacheGroups: {
@@ -98,16 +111,11 @@ module.exports = {
                     test: /[\\/]node_modules[\\/]/,
                     name: "vendors",
                     chunks: "all"
-                },
-                styles: {
-                    name: 'styles',
-                    test: /\.css$/,
-                    chunks: 'all',
-                    enforce: true
                 }
             }
         } : false
     },
+    stats:'minimal',
     plugins:[
         // https://github.com/jantimon/html-webpack-plugin
         new HtmlWebpackPlugin({
@@ -120,15 +128,6 @@ module.exports = {
                 removeAttributeQuotes: true
             } : null
         }),
-        new MiniCssExtractPlugin({
-            filename: "styles/[name].[hash:7].css",
-        }),
-        new OptimizeCssAssetsPlugin({
-            assetNameRegExp: /\.optimize\.css$/g,
-            cssProcessor: require('cssnano'),
-            cssProcessorOptions: { safe: true, discardComments: { removeAll: true } },
-            canPrint: false
-        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new VueLoaderPlugin()
@@ -137,3 +136,16 @@ module.exports = {
     target: 'electron-renderer'
 }
 
+if(production){
+    renderer.plugins.push(
+        // https://github.com/webpack-contrib/mini-css-extract-plugin
+        new MiniCssExtractPlugin({
+            filename: "styles/[name].css"
+        }),
+        // https://github.com/NMFR/optimize-css-assets-webpack-plugin
+        new OptimizeCssAssetsPlugin({})
+    )
+}
+
+
+module.exports = renderer

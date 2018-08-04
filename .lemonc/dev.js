@@ -29,6 +29,7 @@ function createMainBundle() {
             spinner.succeed('Main bundle is starting!')
             console.log(stats.toString({
                 chunks: false,
+                minimal:true,
                 colors:true
             }))
 
