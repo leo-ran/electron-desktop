@@ -11,13 +11,6 @@
 
 使用webpack搭建的electron 基础脚手架，主分支是基础脚手架，若需使用前端框架可切换以下分支
 
-
-### branch
-
-
-- [vue](https://github.com/ranyunlong/electron-desktop/tree/vue)
-- [react](https://github.com/ranyunlong/electron-desktop/tree/react)
-
 ### Application directory
 
 ```
