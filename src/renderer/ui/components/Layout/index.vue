@@ -1,21 +1,16 @@
 <template>
     <div 
+        :style="[
+            {
+                padding:padding+'px',
+                justifyContent,
+                alignItems
+            }
+        ]"
         :class="[
             'lm-layout',{
                 'lm-layout-row':row,
-                'lm-layout-column':column,
-                'lm-layout-column-wrap':column && wrap,
-                'lm-layout-row-wrap':row && wrap,
-                'lm-layout-column-between':column && between,
-                'lm-layout-row-between':row && between,
-                'lm-layout-column-around':column && around,
-                'lm-layout-row-around':row && around,
-                'lm-layout-column-start':column && start,
-                'lm-layout-row-start':row && start,
-                'lm-layout-column-end':column && end,
-                'lm-layout-row-end':row && end,
-                'lm-layout-column-center':column && center,
-                'lm-layout-row-center':row && center
+                'lm-layout-column':column
             }
         ]">
         <slot></slot>
@@ -28,12 +23,53 @@
         props:{
             row:Boolean,
             column:Boolean,
+            padding: Number,
             wrap:Boolean,
-            between:Boolean,
-            around:Boolean,
+            just:String,
+            align:String,
             start:Boolean,
-            end:Boolean,
-            center:Boolean
+            center:Boolean,
+            end:Boolean
+        },
+        computed:{
+            alignItems(){
+                if(this.column && this.start) return 'flex-start'
+                if(this.column && this.end) return 'flex-end'
+                if(this.column && this.center) return 'center'
+                switch(this.align){
+                    case 'start':
+                        return 'flex-start'
+                    break;
+                    case 'end':
+                        return 'flex-end'
+                    break;
+                    case 'center':
+                        return 'center'
+                    break;
+                }
+            },
+            justifyContent(){
+                if(this.row && this.start) return 'flex-start'
+                if(this.row && this.end) return 'flex-end'
+                if(this.row && this.center) return 'center'
+                switch(this.just){
+                    case 'start':
+                        return 'flex-start'
+                    break;
+                    case 'end':
+                        return 'flex-end'
+                    break;
+                    case 'around':
+                        return 'space-around'
+                    break;
+                    case 'between':
+                        return 'space-between'
+                    break;
+                    case 'center':
+                        return 'center'
+                    break;
+                }
+            }
         }
     }
 </script>
@@ -44,45 +80,12 @@
         display: flex;
         &.@{prefix}layout-column{
             flex-direction: column;
-            &.@{prefix}layout-column-wrap{
-                flex-wrap: wrap;
-            }
-            &.@{prefix}layout-column-around{
-                justify-content: space-around;
-            }
-            &.@{prefix}layout-column-between{
-                justify-content: space-between;
-            }
-            &.@{prefix}layout-column-start{
-                justify-content: flex-start;
-            }
-            &.@{prefix}layout-column-end{
-                justify-content: flex-end;
-            }
-            &.@{prefix}layout-column-center{
-                justify-content: center;
-            }
+            align-items: center;
+            align-items: flex-start;
+            align-items: flex-end;
         }
         &.@{prefix}layout-row{
             flex-direction: row;
-            &.@{prefix}layout-wrap{
-                flex-wrap: wrap;
-            }
-            &.@{prefix}layout-row-around{
-                justify-content: space-around;
-            }
-            &.@{prefix}layout-row-between{
-                justify-content: space-between;
-            }
-            &.@{prefix}layout-row-start{
-                justify-content: flex-start;
-            }
-            &.@{prefix}layout-row-end{
-                justify-content: flex-end;
-            }
-            &.@{prefix}layout-row-center{
-                justify-content: center;
-            }
         }
     }
 </style>

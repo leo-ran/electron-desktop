@@ -131,10 +131,10 @@
             padding: 0px;
             color:#fff !important;
             &:active{
-                background: rgba(255,255,255,.1) !important;
+                background: tint(@color,30%);
             }
             &:hover{
-                background: rgba(255,255,255,.2);
+                background: tint(@color,30%);
             }
         }
         
