@@ -5,15 +5,18 @@ import Dialog from './components/Dialog'
 import Icon from './components/Icon'
 import Layout from './components/Layout'
 import Media from './components/Media'
+import Image from './components/Media/image'
 import Menu from './components/Menu'
 import Pagination from './components/Pagination'
 import Progress from './components/Progress'
+import Spin from './components/Spin'
 import Step from './components/Step'
 import Switcher from './components/Switcher'
 import Tab from './components/Tab'
 import Toolbar from './components/Toolbar'
 import Tooltips from './components/Tooltips'
 import Window from './components/Window'
+
 
 import directives from './lib/directives/index'
 
@@ -25,9 +28,11 @@ const components = {
     Icon,
     Layout,
     Media,
+    Image,
     Menu,
     Pagination,
     Progress,
+    Spin,
     Step,
     Switcher,
     Tab,

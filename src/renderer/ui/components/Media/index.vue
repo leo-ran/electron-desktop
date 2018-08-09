@@ -1,7 +1,6 @@
 <template>
     <div 
         class="lm-media" 
-        v-lazy="lazy"
         @click.stop="$emit('click',$event)"
         :style="{
             flex:flex,
@@ -16,26 +15,23 @@
                     'lm-media-list-column':column,
                 }
             ]" >
-            <div 
-                class="lm-media-item"
-                ref="lm-media-item"
+            <Imager 
+                class="lm-media-item" 
+                :alt="alt"
+                :lazy="true"
+                :source="item"
+                ref="Imager"
+                :draggable="draggable"
                 v-for="(item,index) in imagesMap"
-                :style="{
-                    height:item.height
-                }"
-                @click.stop="$emit('select',item,index)"
                 :key="index"
-                >
-                <transition
-                    enter-active-class="lm-media-fadeIn">
-                    <img @load="load(item,index)" :src="item.src" :alt="alt" :draggable="draggable" v-if="lazyState">
-                </transition>
-            </div>
+                @reload="imageLoad"
+                />
         </div>
     </div>
 </template>
 
 <script>
+    import Imager from './image'
     export default {
         name:'Media',
         props:{
@@ -50,20 +46,17 @@
             width:Number,
             draggable:Boolean
         },
-        created(){
-            this.lazyState = !this.lazy 
-        },
-        mounted(){
-           
-        },
         data() {
             return {
-                lazyState: false
+                lazyState: false,
+                imageMinHeight:null
             }
         },
-        methods:{
-            load(item,index){
-                this.$set(item,'height',this.$refs['lm-media-item'][index].clientHeight + 'px')
+        watch:{
+            imageMinHeight(n){
+                this.$refs['Imager'].forEach(Imager=>{
+                    Imager.$el.style.maxHeight = n + 'px'
+                })
             }
         },
         computed:{
@@ -85,6 +78,20 @@
                     }
                 })
             }
+        },
+        methods:{
+            imageLoad(img){
+                if(img.height){
+                    if(!this.imageMinHeight){
+                        this.imageMinHeight = img.height
+                    } else if(img.height < this.imageMinHeight){
+                        this.imageMinHeight = img.height
+                    }
+                }
+            }
+        },
+        components:{
+            Imager
         }
     }
 </script>

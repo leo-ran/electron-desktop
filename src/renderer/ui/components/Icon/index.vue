@@ -23,8 +23,7 @@
         name:'Icon',
         props:{
             size:{
-                type:Number,
-                default:22
+                type:Number
             },
             type:{
                 type:String,

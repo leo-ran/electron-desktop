@@ -60,9 +60,6 @@
         &.@{prefix}toolbar-primary{
             background: @primary;
         }
-        &.@{prefix}toolbar-error{
-            background: @error;
-        }
         &.@{prefix}toolbar-success{
             background: @success;
         }

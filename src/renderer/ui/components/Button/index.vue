@@ -2,65 +2,43 @@
     <button 
         :class="[
             'lm-btn',
-            !disabled ? 'lm-btn-'+color :'lm-btn-disabled',
+            'lm-btn-'+theme,
             {
-                'lm-btn-small':small,
-                'lm-btn-large':large,
-                'lm-btn-small':small,
-                'lm-btn-loadding':loadding,
-                'lm-btn-block':block,
-                'lm-btn-outline':outline,
+                'lm-btn-ghost':ghost,
+                'lm-btn-dashed':dashed,
                 'lm-btn-text':text,
-                'lm-btn-round':round
+                'lm-btn-circle':shape === 'circle',
+                'lm-btn-square':shape === 'square',
+                'lm-btn-lg':size === 'large',
+                'lm-btn-sm':size === 'small',
+                'lm-btn-block':block,
+                'lm-btn-disabled':disabled
             }
         ]"
         :disabled="disabled"
         >
-        <Icon name="sync" class="lm-loadding-a" type="md" :size="22" v-if="loadding && !loadText" />
-        <span v-if="loadText">{{loadText}}</span>
-        <div :class="['lm-btn-content',{
-            'lm-btn-hide':loadding
-            }]">
-            <slot name="before"></slot>
-            <Icon :name="icon" v-if="icon" />
-            <slot>{{value}}</slot>
-            <slot name="after"></slot>
-        </div>
+        <Icon :name="icon" />
+        <slot></slot>
     </button>
 </template>
 
 <script>
-    /**
-     * @param { String } value
-     * @param { String } color
-     * @param { String } icon
-     * @param { String } loadText
-     * @param { Boolean } block
-     * @param { Boolean } disabled
-     * @param { Boolean } loadding
-     * @param { Boolean } outline
-     * @param { Boolean } large
-     * @param { Boolean } small
-     * @param { Boolean } text
-     * @param { Boolean } round
-     */
     export default {
         props:{
-            block:Boolean,
-            color:{
+            theme:{  // primary || danger || success || default       
                 type:String,
                 default:'default'
             },
-            disabled:Boolean,
+            loadding:[Boolean,String],
+            shape: String, // circle || square 
+            size:String, // large || small || normal 
+            value:String, 
             icon:String,
-            loadding:Boolean,
-            loadText:String,
-            small:Boolean,
-            value:String,
-            outline:Boolean,
-            large:Boolean,
-            text:Boolean,
-            round:Boolean
+            dashed:Boolean,
+            disabled:Boolean, 
+            block:Boolean,   
+            ghost:Boolean,
+            text:Boolean
         },
         name:'Button'
     }
@@ -68,153 +46,218 @@
 
 <style lang="less">
     @import '../../styles/variable';
-    .btn(@color,@font:#fff,@border:none){
-        background: @color;
-        border: 1px solid @color;
-        margin: 0 8px;
-        padding: 0 16px;
-        color: @font;
-        border-radius: 3px;
+
+    .btn(){
         outline: none;
-        box-shadow: 0 0 5px 1px #ccc;
-        transition: all .2s linear;
-        height: 36px;
-        font-size: 14px;
+        transition:@btn-transition;
+        border-width: @btn-border-width;
+        height: @btn-height;
+        line-height: @btn-height;
         cursor: pointer;
+        font-size: @btn-font-size;
+    }
+
+    .@{prefix}btn{
+        .btn();
+    }
+
+    .btn-common(){
+        border-style: solid;
+        border-radius: @btn-border-radius;
+        padding: @btn-padding;
+    }
+
+    .btn-type-a(@color){
+        .btn-common();
+        color: contrast(@color);
+        background: @color;
+        border-color: @color;
+        &:hover,
+        &:focus{
+            background: lighten(@color,@btn-percent); 
+            border-color: lighten(@color,@btn-percent);
+        }
         &:active{
-            box-shadow: none;
-            background: lighten(@color,7%);
-            border: 1px solid lighten(@color,7%);
+            background: darken(@color,@btn-percent); 
+            border-color: darken(@color,@btn-percent); 
         }
-        &:hover{
-            background: lighten(@color,7%);
-            border: 1px solid lighten(@color,7%);
-        }
-        &.@{prefix}btn-loadding{
-            background: lighten(@color,30%);
-            box-shadow: 0 0 3px 1px #ccc;
-            border: 1px solid lighten(@color,30%);
-            cursor: not-allowed;
-            &:active{
-                box-shadow: 0 0 3px 1px #ccc;
-            }
-            &:hover{
-                background: lighten(@color,30%);
-            }
-        }
-        &.@{prefix}btn-outline{
-            background: transparent;
-            border: 1px solid @color;
-            color:@color;
-            &:hover{
-               background: tint(@color, 80%);
+
+        &.@{prefix}btn-dashed{
+            border-style: dashed !important;
+            background: contrast(@color);
+            color: @color;
+            border-color: #d9d9d9;
+            &:hover,
+            &:focus{
+                border-color:  @color; 
+                color:@color;
             }
             &:active{
-                box-shadow: none;
+                color:darken(@color,@btn-percent);
+                border-color: darken(@color,20%); 
+            }
+        }
+
+        &.@{prefix}btn-ghost{
+            background: transparent !important;
+            color: contrast(@color);
+            border-color: contrast(@color);
+            &:hover,
+            &:active,
+            &:focus{
+                background: transparent;
+            }
+            &:hover,
+            &:focus{
+                color:lighten(@color,@btn-percent);
+                border-color: lighten(@color,@btn-percent);
+            }
+            &:active{
+                color:darken(@color,@btn-percent);
+                border-color: darken(@color,@btn-percent); 
+            }
+        }
+
+        &.@{prefix}btn-text{
+            border: transparent !important;
+            background: contrast(@color);
+            color: @color;
+            &:hover,
+            &:focus{
+                color: lighten(@color,@btn-percent);
+            }
+            &:active{
+                color: darken(@color,@btn-percent); 
+            }
+        }
+    }
+
+
+    .@{prefix}btn-default{
+        background: contrast(@primary);
+        color: #949393;
+        border-color: #d9d9d9;
+        .btn-common();
+        &:hover,
+        &:focus{
+            border-color: lighten(@primary,@btn-percent); 
+            color: lighten(@primary,@btn-percent);
+        }
+        &:active{
+            color:darken(@primary,@btn-percent);
+            border-color: darken(@primary,@btn-percent); 
+        }
+        &.@{prefix}btn-dashed{
+            border-style: dashed !important;
+        }
+        &.@{prefix}btn-ghost{
+            background: transparent !important;
+            border-color: contrast(@primary);
+            color: contrast(@primary);
+            &:hover,
+            &:focus{
+                background: transparent;
+                border-color: lighten(@primary,@btn-percent); 
+                color: lighten(@primary,@btn-percent);
+            }
+            &:active{
+                background: transparent;
+                color:darken(@primary,@btn-percent);
+                border-color: darken(@primary,@btn-percent); 
             }
         }
         &.@{prefix}btn-text{
-            background: transparent;
-            border: none !important;
-            box-shadow: none;
-            color:@color;
-            &:hover{
-                color:tint(@color,40%)
+            border: transparent !important;
+            background: contrast(@primary);
+            &:hover,
+            &:focus{
+                color: lighten(@primary,@btn-percent);
             }
-        }
-
-        &.@{prefix}btn-round{
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            overflow: hidden;
-            padding: 0px;
-            color:#fff !important;
             &:active{
-                background: tint(@color,30%);
-            }
-            &:hover{
-                background: tint(@color,30%);
+                color: darken(@primary,@btn-percent); 
             }
         }
-        
-        &.@{prefix}btn-small{
-            padding: 0 16px;
-            height: 28px;
-            font-size: 0.8em;
-            &.@{prefix}btn-round{
-                width: 34px;
-                height: 34px;
-                padding: 0px;
-            }
-        }
-
-        &.@{prefix}btn-large{
-            padding: 0 30px;
-            height: 44px;
-            font-size: 1.1em;
-            &.@{prefix}btn-round{
-               padding: 0px;
-                width: 50px;
-                height: 50px;
-            }
-        }
-
-        &.@{prefix}btn-block{
-            width: 100%;
-            margin: 6px 0px;
-        }
-
     }
+
     .@{prefix}btn-primary{
-        .btn(@primary);
+        .btn-type-a(@primary);
     }
 
-    .@{prefix}btn-secondary{
-        .btn(@secondary);
-    }
-
-    .@{prefix}btn-accent{
-        .btn(@accent);
-    }
-    .@{prefix}btn-error{
-        .btn(@error);
-    }
-    .@{prefix}btn-info{
-        .btn(@info);
-    }
     .@{prefix}btn-success{
-        .btn(@success)
+        .btn-type-a(@success);
     }
-    .@{prefix}btn-warning{
-        .btn(@warning)
+
+    .@{prefix}btn-danger{
+        .btn-type-a(@danger);
     }
-    .@{prefix}btn-default{
-        .btn(#f5f5f5,#000);
-        color: #000 !important;
-        &:hover{
-            color: tint(#000,40%) !important;
+
+    .@{prefix}btn-square{
+        border-radius: 0;
+    }
+
+    /*圆形按钮*/
+    .@{prefix}btn-circle{
+        padding: 0;
+        width: @btn-height;
+        height: @btn-height;
+        border-radius: 50%;
+        overflow: hidden;
+        text-overflow:clip;
+    }
+
+    .@{prefix}btn-lg{
+        height: @btn-lg-height;
+        line-height: @btn-lg-height;
+        font-size: @btn-lg-font-size;
+        padding: @btn-lg-padding;
+        &.@{prefix}btn-circle{
+            padding: 0;
+            width: @btn-lg-height;
+            height: @btn-lg-height;
         }
-        border: 1px solid #ddd !important;
-    }
-    .@{prefix}btn-disabled{
-        .btn(rgba(0, 0, 0, 0.12),rgba(0,0,0,0.26));
-        border: 1px solid #ddd;
-        cursor: not-allowed;
-        box-shadow:none;
-        &:hover,
-        &:active{
-            background: rgba(0,0,0,0.12);
-             box-shadow:none;
+        .lm-icon{
+            font-size: 20px;
         }
     }
 
-    .@{prefix}loadding-a{
-        animation: rotate 1s ease-in-out infinite;
-        display: block;
+    .@{prefix}btn-sm{
+        height: @btn-sm-height;
+        line-height: @btn-sm-height;
+        font-size: @btn-sm-font-size;
+        padding: @btn-sm-padding;
+        &.@{prefix}btn-circle{
+            padding: 0;
+            width: @btn-sm-height;
+            height: @btn-sm-height;
+        }
+        .lm-icon{
+            font-size: 12px;
+        }
     }
-    .@{prefix}btn-hide{
-        visibility: hidden;
-        height: 0;
+
+    .@{prefix}btn-block{
+        width: 100%;
     }
+
+    .@{prefix}btn-disabled{
+        background: @btn-disabled-color;
+        border-color: #d9d9d9;
+        color: #949393;
+        cursor: no-drop;
+        &:hover,
+        &:active,
+        &:focus{
+            background: @btn-disabled-color;
+            border-color: #d9d9d9;
+            color: #949393 !important;
+        }
+        &.@{prefix}btn-text{
+            background: transparent;
+        }
+    }
+
+
+    
+
+    
 </style>

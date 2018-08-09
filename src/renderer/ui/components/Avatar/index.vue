@@ -2,16 +2,20 @@
     <div 
         class="lm-avatar"
         @click="$emit('click',$event)"
-        v-lazy="lazy"
+        v-lazy="lazy && src"
         :style="{
-            width:size+'px',
-            height:size+'px',
-            backgroundColor:color
+            width:isize+'px',
+            height:isize+'px',
+            lineHeight:isize+'px',
+            backgroundColor:color,
+            borderRadius: square ? null : '50%'
             }">
         <transition
             enter-active-class="lm-avatar-fadeIn"
             >
-            <img :src="src" v-if="lazyState">
+            <img :src="src" @error="$emit('onError',src)" v-if="lazyState && src">
+            <Icon :name="icon" :size="isize / 2" type="md" v-else-if="icon && !src && !text" />
+            <div v-else>{{text}}</div>
         </transition>
     </div>
 </template>
@@ -28,16 +32,32 @@
         name:'Avatar',
         props:{
             color:String,
+            icon:{
+                type:String,
+                default:'person'
+            },
             size:Number,
             src:String,
-            lazy:Boolean
+            lazy:Boolean,
+            square:Boolean,
+            large:Boolean,
+            small:Boolean,
+            text:String
         },
         created(){
             this.lazyState = !this.lazy
         },
         data(){
             return {
-                lazyState:false
+                lazyState:false,
+            }
+        },
+        computed:{
+            isize(){
+                if(this.size) return this.size
+                if(this.large) return 40
+                if(this.small) return 24
+                return 32
             }
         }
     }
@@ -46,12 +66,13 @@
 <style lang="less">
     @import '../../styles/variable';
     .@{prefix}avatar{
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
+        width: 32px;
+        height: 32px;
         display: inline-block;
+        border-radius: 5px;
         background: @avatar-color;
-        border: 1px solid @avatar-color;
+        text-align: center;
+        color: #fff;
         cursor: pointer;
         overflow: hidden;
         img{
