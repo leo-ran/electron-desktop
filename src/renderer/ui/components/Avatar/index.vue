@@ -36,7 +36,7 @@
                 type:String,
                 default:'person'
             },
-            size:Number,
+            size:[String,Number],
             src:String,
             lazy:Boolean,
             square:Boolean,

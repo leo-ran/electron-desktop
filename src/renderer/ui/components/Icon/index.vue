@@ -38,6 +38,7 @@
 </script>
 
 <style lang="less">
-    // @import '../../styles/variable';
-    // @import './fonts';
+     @import '../../styles/variable';
+     @import './fonts';
+    .@{prefix}icon{}
 </style>

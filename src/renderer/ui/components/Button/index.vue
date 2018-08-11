@@ -12,24 +12,29 @@
                 'lm-btn-lg':size === 'large',
                 'lm-btn-sm':size === 'small',
                 'lm-btn-block':block,
+                'lm-btn-loadding':Boolean(loadding),
                 'lm-btn-disabled':disabled
+
             }
         ]"
         :disabled="disabled"
+        @click="click"
         >
-        <Icon :name="icon" />
+        <Spin :spinning="Boolean(loadding)" :size="size" :mode="Number(loadding)" v-if="loadding" :icon="icon"/>
+        <Icon :name="icon" v-else-if="icon && !loadding"/>
         <slot></slot>
     </button>
 </template>
 
 <script>
+    import Spin from '../Spin'
     export default {
         props:{
             theme:{  // primary || danger || success || default       
                 type:String,
                 default:'default'
             },
-            loadding:[Boolean,String],
+            loadding:[Boolean,String,Number],
             shape: String, // circle || square 
             size:String, // large || small || normal 
             value:String, 
@@ -40,20 +45,43 @@
             ghost:Boolean,
             text:Boolean
         },
-        name:'Button'
+        name:'Button',
+        component:{
+            Spin
+        },
+        filters:{
+            number(value){
+                if(isNaN(value)) return value
+                return 1
+            }
+        },
+        methods:{
+            click(){
+                if(this.loadding) return
+                if(this.disabled) return
+            }
+        }
     }
 </script>
 
 <style lang="less">
     @import '../../styles/variable';
-
     .btn(){
         outline: none;
         transition:@btn-transition;
-        border-width: @btn-border-width;
+        border-width: @btn-border-width !important;
         height: @btn-height;
         cursor: pointer;
         font-size: @btn-font-size;
+        .@{prefix}btn-value{
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 3px;
+        }
+        .@{prefix}spin{
+            color: inherit !important;
+            vertical-align: middle;
+        }
     }
 
     .@{prefix}btn{
@@ -71,6 +99,9 @@
         color: contrast(@color);
         background: @color;
         border-color: @color;
+        .@{prefix}spin span{
+            background-color: contrast(@color);
+        }
         &:hover,
         &:focus{
             background: lighten(@color,@btn-percent); 
@@ -83,7 +114,7 @@
 
         &.@{prefix}btn-dashed{
             border-style: dashed !important;
-            background: contrast(@color);
+            background: contrast(@color) !important;
             color: @color;
             border-color: #d9d9d9;
             &:hover,
@@ -129,14 +160,35 @@
                 color: darken(@color,@btn-percent); 
             }
         }
-    }
 
+        &.@{prefix}btn-loadding{
+            background: lighten(@color,20%);
+            border: lighten(@color,20%);
+            &.@{prefix}btn-dashed{
+                color:lighten(@color,20%);
+                .@{prefix}spin{
+                    span{
+                        background-color: lighten(@color,20%);
+                    }
+                }
+            }
+            &:hover,
+            &:active,
+            &:focus{
+                background: lighten(@color,20%);
+                border: lighten(@color,20%);
+            }
+        }
+    }
 
     .@{prefix}btn-default{
         background: contrast(@primary);
         color: #949393;
         border-color: #d9d9d9;
         .btn-common();
+        .@{prefix}spin span{
+            background-color: #949393;
+        }
         &:hover,
         &:focus{
             border-color: lighten(@primary,@btn-percent); 
@@ -227,7 +279,7 @@
             width: @btn-sm-height;
             height: @btn-sm-height;
         }
-        .lm-icon{
+        .@{prefix}icon{
             font-size: 12px;
         }
     }
@@ -252,9 +304,5 @@
             background: transparent;
         }
     }
-
-
-    
-
     
 </style>

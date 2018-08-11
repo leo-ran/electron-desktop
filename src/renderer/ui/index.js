@@ -18,8 +18,6 @@ import Toolbar from './components/Toolbar'
 // import Window from './components/Window'
 
 
-import './styles/fonts/fonts.less'
-
 import directives from './lib/directives'
 
 const components = {

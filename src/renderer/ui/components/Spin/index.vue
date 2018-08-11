@@ -8,15 +8,24 @@
         ]"
         v-if="spinning"
         :style="{
-            animationPlayState: mode === 1 ? 'paused' : 'play',
-            width:mode === 1 ? '30px' : false
+            animationPlayState: mode === 1 || !spinning ? 'paused' : 'play'
         }">
-        <div class="lm-spin-mode-1" v-if="mode === 1">    
+        <div
+            class="lm-spin-mode-1"
+            v-if="mode === 1"
+            :style="{
+                animationPlayState: mode === 1 && spinning ? 'play' : 'paused',
+            }">
             <span></span>
             <span></span>
             <span></span>
         </div>
-        <div class="lm-spin-mode-2" v-if="mode === 2">    
+        <div
+            class="lm-spin-mode-2"
+            v-if="mode === 2"
+            :style="{
+                animationPlayState: mode === 1 && spinning ? 'play' : 'paused',
+            }">
             <span></span>
             <span></span>
             <span></span>
@@ -34,7 +43,7 @@
         props:{
             icon:{ // icon 选项只在模式3下生效
                 type:String,
-                default:'add'
+                default:'spin1'
             },
             spinning:{
                 type:Boolean,
@@ -57,6 +66,7 @@
  @keyframes loadFadeScale {
     0%{
         transform: scale(1,1);
+        border-radius: 50%;
         opacity: 1;
     }
     100%{
@@ -73,34 +83,51 @@
         opacity: 0;
     }
 }
-.@{prefix}spin{
+ @size:@spin-size;
+ @lg-size:@spin-lg-size;
+ @sm-size:@spin-sm-size;
+
+ .@{prefix}spin{
     display: inline-block;
     animation:rotate 1.3s linear infinite;
     text-align: center;
-    width: 20px;
-    height: 20px;
-    color: @primary;
-    line-height: 20px;
+    width:  @size;
+    height: @size;
+    overflow: hidden;
     .@{prefix}icon{
-        font-size: 20px;
+        line-height: @size;
+        font-size:  @size - 2;
     }
+    color: @primary;
+    vertical-align: middle;
     text-align: center;
-    display: inline-block;
     &.@{prefix}spin-lg{
-        width: 32px;
-        height: 32px;
-        line-height: 32px;
+        width: @lg-size;
+        height: @lg-size;
         .@{prefix}icon{
-            font-size: 32px;
+            font-size: @lg-size - 2px;
+            line-height: @lg-size;
+        }
+        .@{prefix}spin-mode-1{
+            span{
+                width: 6px;
+                height: 6px;
+            }
         }
     }
     &.@{prefix}spin-sm{
-        text-align: center;
-        width: 14px;
-        height: 14px;
-        line-height: 14px;
+        width: @sm-size;
+        height: @sm-size;
          .@{prefix}icon{
-            font-size: 14px;
+             text-align: center;
+            font-size: @sm-size - 4px;
+            line-height: @sm-size;
+         }
+        .@{prefix}spin-mode-1{
+            span{
+                width: 3px;
+                height: 3px;
+            }
         }
     }
     .@{prefix}spin-mode-1{
@@ -110,8 +137,8 @@
         justify-content: space-between;
         align-items: center;
         span{
-            width: 7px;
-            height: 7px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
             background: @primary;
             opacity: 0;

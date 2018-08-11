@@ -1,117 +1,111 @@
-<Button>Default</Button>
-        <Button theme="primary">Primary</Button>
-        <Button theme="success">Success</Button>
-        <Button theme="danger">Danger</Button>
-        <h2>Dashed</h2>
-        <Button dashed>Default</Button>
-        <Button dashed theme="primary">Primary</Button>
-        <Button dashed theme="success">Success</Button>
-        <Button dashed theme="danger">Danger</Button>
-        <h2>Ghost</h2>
-        <div style="background:#3c3c3c;padding:10px;">
-            <Button ghost>Default</Button>
-            <Button ghost theme="primary">Primary</Button>
-            <Button ghost theme="success">Success</Button>
-            <Button ghost theme="danger">Danger</Button>
-        </div>
-        <h2>Dashed & Ghost</h2>
-        <div style="background:#3c3c3c;padding:10px;">
-            <Button dashed ghost>Default</Button>
-            <Button dashed ghost theme="primary">Primary</Button>
-            <Button dashed ghost theme="success">Success</Button>
-            <Button dashed ghost theme="danger">Danger</Button>
-        </div>
+<h1>SM</h1>
+<Button theme="danger" size="small">按钮一枚</Button>
+<Button theme="success" size="small">按钮一枚</Button>
+<Button theme="primary" size="small">按钮一枚</Button>
+<br/>
+<br/>
+<Button theme="danger" shape="square" size="small">按钮一枚</Button>
+<Button theme="success" shape="square" size="small">按钮一枚</Button>
+<Button theme="primary" shape="square" size="small">按钮一枚</Button>
+<br/>
+<br/>
+<Button theme="danger" size="small" :loadding="1">按钮一枚</Button>
+<Button theme="success" size="small" :loadding="2">按钮一枚</Button>
+<Button theme="primary" size="small" :loadding="3">按钮一枚</Button>
+<br/>
+<br/>
+<Button theme="danger" shape="square" :loadding="1" size="small">按钮一枚</Button>
+<Button theme="success" shape="square" :loadding="2" size="small">按钮一枚</Button>
+<Button theme="primary" shape="square" :loadding="3" size="small">按钮一枚</Button>
+<br/>
+<br/>
+<Button theme="danger" dashed size="small" :loadding="1">按钮一枚</Button>
+<Button theme="success" dashed size="small" :loadding="2">按钮一枚</Button>
+<Button theme="primary" dashed size="small" :loadding="3">按钮一枚</Button>
+<br/>
+<br/>
+<Button theme="danger" dashed shape="square" :loadding="1" size="small">按钮一枚</Button>
+<Button theme="success" dashed shape="square" :loadding="2" size="small">按钮一枚</Button>
+<Button theme="primary" dashed shape="square" :loadding="3" size="small">按钮一枚</Button>
 
-        <h2>Text</h2>
-        <Button text>Default</Button>
-        <Button text theme="primary">Primary</Button>
-        <Button text theme="success">Success</Button>
-        <Button text theme="danger">Danger</Button>
-
-        <h2>Size</h2>
-        <Button size="large">Default</Button>
-        <Button>Default</Button>
-        <Button size="small">Default</Button>
-        <br/>
-        <Button text size="large">Default</Button>
-        <Button text>Default</Button>
-        <Button text size="small">Default</Button>
-        <br/>
-        <Button size="large" theme="primary">Primary</Button>
-        <Button size="large" theme="success">Success</Button>
-        <Button size="large" theme="danger">Danger</Button>
-        <br/>
-        <br/>
-        <Button theme="primary">Primary</Button>
-        <Button theme="success">Success</Button>
-        <Button theme="danger">Danger</Button>
-        <br/>
-        <br/>
-        <Button size="small" theme="primary">Primary</Button>
-        <Button size="small" theme="success">Success</Button>
-        <Button size="small" theme="danger">Danger</Button>
-        <br/>
-        <br/>
-        <div style="background:#3c3c3c;padding:10px;">
-            <Button ghost size="large" theme="primary">Primary</Button>
-            <Button ghost size="large" theme="success">Success</Button>
-            <Button ghost size="large" theme="danger">Danger</Button>
-            <br/>
-            <br/>
-            <Button ghost theme="primary">Primary</Button>
-            <Button ghost theme="success">Success</Button>
-            <Button ghost theme="danger">Danger</Button>
-            <br/>
-            <br/>
-            <Button ghost size="small" theme="primary">Primary</Button>
-            <Button ghost size="small" theme="success">Success</Button>
-            <Button ghost size="small" theme="danger">Danger</Button>
-        </div>
-
-        <h2>Shape circle</h2>
-        <Button shape="circle" size="large" theme="primary">Primary</Button>
-        <Button shape="circle" theme="success">Success</Button>
-        <Button shape="circle" size="small" theme="danger">Danger</Button>
-        
-        <h2>Shape square</h2>
-        <Button shape="square" size="large" theme="primary">Primary</Button>
-        <Button shape="square" theme="success">Success</Button>
-        <Button shape="square" size="small" theme="danger">Danger</Button>
-
-        <h2>Shape square dashed</h2>
-        <Button dashed shape="square" size="large" theme="primary">Primary</Button>
-        <Button dashed shape="square" theme="success">Success</Button>
-        <Button dashed shape="square" size="small" theme="danger">Danger</Button>
-        
-        <h2>Block</h2>
-        <div style="padding:10px">
-            <Button block theme="danger">Danger</Button>
-            <br/>
-            <br/>
-            <Button block size="large" theme="primary">Danger</Button>
-            <br/>
-            <br/>
-            <Button block size="small" theme="success">Danger</Button>
-
-            <br/>
-            <br/>
-            <Button dashed block size="small" theme="success">Danger</Button>
-        </div>
-        <h2>Disabled</h2>
-        <Button disabled size="small" theme="danger">Disabled</Button>
-        <Button disabled size="large" theme="primary">Disabled</Button>
-        <Button disabled size="small" theme="success">Disabled</Button>
-        <Button shape="circle" disabled size="large">Disabled</Button>
-        <Button shape="square" disabled size="large">Disabled</Button>
-        <Button dashed disabled size="large">Disabled</Button>
-        <Button disabled size="large" text>Disabled</Button>
-
-        <h2>Icon</h2>
-        <Button icon="menu" />
-        <Button size="large" icon="menu" />
-        <Button size="small" icon="menu" />
-        <Button text size="small" icon="menu" />
-        <Button size="large" icon="close" />
-        <Button size="large" shape="circle" theme="primary" icon="person" />
-        <Button size="large" shape="circle" theme="success" icon="person" />
-        <Button size="large" shape="circle" theme="danger" icon="person" />
+<br/>
+<br/>
+<Button theme="danger" shape="circle" icon="person" size="small"></Button>
+<Button theme="success" shape="circle" icon="person" size="small"></Button>
+<Button theme="primary" shape="circle" icon="person" size="small"></Button>
+<Button theme="danger" shape="circle" loadding="1" size="small"></Button>
+<Button theme="success" shape="circle" loadding="2" size="small"></Button>
+<Button theme="primary" shape="circle" loadding="3" size="small"></Button>
+<Button theme="danger" dashed shape="circle" loadding="1" size="small"></Button>
+<Button theme="success" dashed shape="circle" loadding="2" size="small"></Button>
+<Button theme="primary" dashed shape="circle" loadding="3" size="small"></Button>
+<h1>NM</h1>
+<Button theme="danger" >按钮一枚</Button>
+<Button theme="success">按钮一枚</Button>
+<Button theme="primary">按钮一枚</Button>
+<br/>
+<br/>
+<Button theme="danger" :loadding="1" >按钮一枚</Button>
+<Button theme="success" :loadding="2" >按钮一枚</Button>
+<Button theme="primary" :loadding="3">按钮一枚</Button>
+<br/>
+<br/>
+<Button theme="danger" shape="square">按钮一枚</Button>
+<Button theme="success" shape="square">按钮一枚</Button>
+<Button theme="primary" shape="square">按钮一枚</Button>
+<br/>
+<br/>
+<Button theme="danger" dashed shape="square">按钮一枚</Button>
+<Button theme="success" dashed shape="square">按钮一枚</Button>
+<Button theme="primary" dashed shape="square">按钮一枚</Button>
+<br/>
+<br/>
+<Button theme="danger" dashed :loadding="1">加载中</Button>
+<Button theme="primary" dashed :loadding="2">加载中</Button>
+<Button theme="success" dashed :loadding="3">加载中</Button>
+<br/>
+<br/>
+<Button theme="danger" shape="circle" icon="person"></Button>
+<Button theme="success" shape="circle" icon="person"></Button>
+<Button theme="primary" shape="circle" icon="person"></Button>
+<Button theme="danger" shape="circle" loadding="1"></Button>
+<Button theme="success" shape="circle" loadding="2"></Button>
+<Button theme="primary" shape="circle" loadding="3"></Button>
+<Button theme="danger" dashed shape="circle" loadding="1"></Button>
+<Button theme="success" dashed shape="circle" loadding="2"></Button>
+<Button theme="primary" dashed shape="circle" loadding="3"></Button>
+<h1>LG</h1>
+<Button theme="danger" size="large" >按钮一枚</Button>
+<Button theme="success" size="large" >按钮一枚</Button>
+<Button theme="primary" size="large">按钮一枚</Button>
+<br/>
+<br/>
+<Button theme="danger" size="large" :loadding="1">按钮一枚</Button>
+<Button theme="success" size="large" :loadding="2">加载中</Button>
+<Button theme="primary" size="large" :loadding="3">加载中</Button>
+<br/>
+<br/>
+<Button theme="danger" shape="square" size="large">按钮一枚</Button>
+<Button theme="success" shape="square" size="large">按钮一枚</Button>
+<Button theme="primary" shape="square" size="large">按钮一枚</Button>
+<br/>
+<br/>
+<Button theme="danger" dashed shape="square" size="large">按钮一枚</Button>
+<Button theme="success" dashed shape="square" size="large">按钮一枚</Button>
+<Button theme="primary" dashed shape="square" size="large">按钮一枚</Button>
+<br/>
+<br/>
+<Button theme="danger" size="large" dashed :loadding="1">按钮一枚</Button>
+<Button theme="success" size="large" dashed :loadding="2">加载中</Button>
+<Button theme="primary" size="large" dashed :loadding="3">加载中</Button>
+<br/>
+<br/>
+<Button theme="danger" size="large" shape="circle" icon="person"></Button>
+<Button theme="success" size="large" shape="circle" icon="person"></Button>
+<Button theme="primary" size="large" shape="circle" icon="person"></Button>
+<Button theme="danger" size="large" shape="circle" loadding="1"></Button>
+<Button theme="success" size="large" shape="circle" loadding="2"></Button>
+<Button theme="primary" size="large" shape="circle" loadding="3"></Button>
+<Button theme="danger" dashed size="large" shape="circle" loadding="1"></Button>
+<Button theme="success" dashed size="large" shape="circle" loadding="2"></Button>
+<Button theme="primary" dashed size="large" shape="circle" loadding="3"></Button>
