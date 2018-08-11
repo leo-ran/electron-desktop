@@ -52,7 +52,6 @@
         transition:@btn-transition;
         border-width: @btn-border-width;
         height: @btn-height;
-        line-height: @btn-height;
         cursor: pointer;
         font-size: @btn-font-size;
     }
@@ -207,7 +206,6 @@
 
     .@{prefix}btn-lg{
         height: @btn-lg-height;
-        line-height: @btn-lg-height;
         font-size: @btn-lg-font-size;
         padding: @btn-lg-padding;
         &.@{prefix}btn-circle{
@@ -222,7 +220,6 @@
 
     .@{prefix}btn-sm{
         height: @btn-sm-height;
-        line-height: @btn-sm-height;
         font-size: @btn-sm-font-size;
         padding: @btn-sm-padding;
         &.@{prefix}btn-circle{

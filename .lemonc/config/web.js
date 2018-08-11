@@ -117,6 +117,7 @@ const renderer = {
     },
     stats:'minimal',
     plugins:[
+        new VueLoaderPlugin(),
         // https://github.com/jantimon/html-webpack-plugin
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -129,11 +130,10 @@ const renderer = {
             } : null
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new VueLoaderPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ],
     mode: process.env.NODE_ENV,
-    target: 'electron-renderer'
+    target: 'web'
 }
 
 if(production){

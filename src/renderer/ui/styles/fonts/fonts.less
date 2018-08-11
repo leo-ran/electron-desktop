@@ -1,15 +1,25 @@
+@prefix:lm-;
 
-@font-face {font-family: "lemoncfont";
-  src: url('./fonts.ttf') format('truetype');
+@font-face {
+  font-family: "iconfont";
+  src: url('./iconfont.ttf') format('truetype');
 }
 
 .@{prefix}icon {
-  font-family:"lemoncfont" !important;
+  font-family:"iconfont" !important;
   font-size:16px;
   font-style:normal;
   -webkit-font-smoothing: antialiased;
-  display: inline;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+.@{prefix}icon-ios-spin2:before { content: "\e969"; }
+
+.@{prefix}icon-md-spin2:before { content: "\e96b"; }
+
+.@{prefix}icon-md-spin1:before { content: "\e634"; }
+
+.@{prefix}icon-ios-spin1:before { content: "\e96c"; }
 
 .@{prefix}icon-ios-arrow-dropdown-c:before { content: "\e679"; }
 
@@ -1502,8 +1512,6 @@
 .@{prefix}icon-md-transgender:before { content: "\e961"; }
 
 .@{prefix}icon-md-undo:before { content: "\e962"; }
-
-.@{prefix}icon-md-trash:before { content: "\e963"; }
 
 .@{prefix}icon-md-trophy:before { content: "\e964"; }
 

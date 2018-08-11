@@ -9,7 +9,8 @@
     "start": "npm run dev",
     "dev": "node ./.lemonc/dev",
     "build": "node ./.lemonc/build && electron-builder",
-    "dist": "node ./.lemonc/build"
+    "dist": "node ./.lemonc/build",
+    "web":"node ./.lemonc/web"
   },
   "build": {
     "productName": "lemonc",

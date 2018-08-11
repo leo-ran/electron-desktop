@@ -3,7 +3,7 @@
         :class="[
             'lm-icon',
             'lm-icon-'+type+'-'+ name
-            ]"
+        ]"
         :style="{
             fontSize:size + 'px',
             color:color
@@ -38,6 +38,6 @@
 </script>
 
 <style lang="less">
-    @import '../../styles/variable';
-    @import '../../styles/fonts/fonts';
+    // @import '../../styles/variable';
+    // @import './fonts';
 </style>
