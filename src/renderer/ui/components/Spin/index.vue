@@ -31,7 +31,9 @@
             <span></span>
             <span></span>
         </div>
-        <Icon :name="icon" v-if="mode === 3"/>
+        <div class="lm-spin-mode-3" v-if="mode === 3">
+            <span class="border"></span>
+        </div>
         <slot v-if="mode === 4"></slot>
     </div>
 </template>
@@ -39,7 +41,12 @@
 <script>
     import Icon from '../Icon/index'
     export default {
-        name:"Spin",
+        name: 'Spin',
+        data(){
+            return {
+                mode3:Array(8)
+            }
+        },
         props:{
             icon:{ // icon 选项只在模式3下生效
                 type:String,
@@ -178,6 +185,22 @@
             &:nth-child(4){
                 animation: loadFade 1s 1.5s ease-in alternate-reverse infinite;
             }
+        }
+    }
+    .@{prefix}spin-mode-3{
+        width: inherit;
+        height: inherit;
+        position: relative;
+        span{
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: transparent !important;
+            border-top-left-radius: 80%;
+            border-top: 1px solid @primary;
+            border-top: 1px solid @primary;
         }
     }
 }

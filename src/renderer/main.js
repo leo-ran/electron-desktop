@@ -9,8 +9,8 @@ import ui from './ui';
 Vue.use(ui)
 
 new Vue({
-    el:"#app",
-    template:`<App />`,
+    el: '#app',
+    template:'<App />',
     store,
     router,
     components:{

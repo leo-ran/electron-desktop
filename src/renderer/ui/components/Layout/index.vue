@@ -33,10 +33,10 @@
         },
         computed:{
             alignItems(){
-                if(this.column && this.start) return 'flex-start'
-                if(this.column && this.end) return 'flex-end'
-                if(this.column && this.center) return 'center'
-                switch(this.align){
+                if (this.column && this.start) return 'flex-start'
+                if (this.column && this.end) return 'flex-end'
+                if (this.column && this.center) return 'center'
+                switch (this.align){
                     case 'start':
                         return 'flex-start'
                     break;
@@ -46,13 +46,15 @@
                     case 'center':
                         return 'center'
                     break;
+                    default:
+                    return;
                 }
             },
             justifyContent(){
-                if(this.row && this.start) return 'flex-start'
-                if(this.row && this.end) return 'flex-end'
-                if(this.row && this.center) return 'center'
-                switch(this.just){
+                if (this.row && this.start) return 'flex-start'
+                if (this.row && this.end) return 'flex-end'
+                if (this.row && this.center) return 'center'
+                switch (this.just){
                     case 'start':
                         return 'flex-start'
                     break;
@@ -68,6 +70,8 @@
                     case 'center':
                         return 'center'
                     break;
+                    default:
+                    return;
                 }
             }
         }

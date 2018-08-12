@@ -12,8 +12,6 @@ logger.logo()
 process.env.NODE_ENV = 'development' //production
 const mainBundleConfig=require('./config/main')
 const rendererBundleConfig = require('./config/renderer')
-
-
 const spinner = ora('Lemonc is start running... \n').start();
 
 let mainProcess,
@@ -23,6 +21,9 @@ let mainProcess,
 function createMainBundle() {
     return new Promise(resolve=>{
         const compiler  = webpack(mainBundleConfig)
+        compiler.hooks.done.tap('LemoncPlugin',()=>{
+            resolve()
+        })
         // 监听修改
         compiler.watch({},(err, stats)=>{
             if(err) throw err;
@@ -46,7 +47,6 @@ function createMainBundle() {
                 startElectron()
                 return;
             }
-            resolve()
         })
     })
 }
@@ -55,19 +55,26 @@ function createRendererBundle(){
     return new Promise(resolve=>{
         rendererBundleConfig.entry.renderer = [path.join(__dirname,'dev-client.js')].concat(rendererBundleConfig.entry.renderer)
         const compiler = webpack(rendererBundleConfig)  
-
+        compiler.hooks.done.tap('LemoncPlugin',()=>{
+            resolve()
+        })
         const server = new WebpackDevServer(
             compiler,
             {
                 contentBase: path.join(__dirname, '../'),
                 compress: true,
                 port: 9080,
+                stats:{
+                    colors:true,
+                    chunks:false,
+                    assets:true,
+                    modules:false
+                },
                 before (app, ctx) {
                     app.use(webpackHotMiddleware(compiler,{
                         log: false, 
                         heartbeat: 2500 
                     }))
-                    resolve()
                 }
             }
         )

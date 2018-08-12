@@ -17,23 +17,22 @@ const renderer = {
                 test:/\.js$/,
                 include:path.resolve('src','renderer'),
                 exclude:/node_modules/,
-                use:[{
-                    loader:'babel-loader',
-                    options:{
-                        presets: ['env','es2015'],
-                        // https://github.com/vuejs/babel-plugin-transform-vue-jsx
-                        plugins: ['transform-runtime','transform-vue-jsx']
-                    }
-                },{
-                    loader:'eslint-loader',
-                    options:{
-                        formatter:require('eslint/lib/formatters/stylish')
-                    }
-                }]
+                use:'babel-loader'
             },
             {
                 test:/\.vue$/,
                 use:'vue-loader'
+            },
+            {
+                test:/\.(js|vue)$/,
+                include:path.resolve('src','renderer'),
+                exclude: /node_modules/,
+                use:{
+                    loader:'eslint-loader',
+                    options:{
+                        formatter:require('eslint/lib/formatters/stylish')
+                    }
+                }
             },
             {
                 test:/\.css$/,
@@ -114,10 +113,9 @@ const renderer = {
                 }
             }
         } : false
-    },
-    stats:'minimal',
+    },  
     plugins:[
-        new VueLoaderPlugin(),
+        // new webpack.ProgressPlugin(),
         // https://github.com/jantimon/html-webpack-plugin
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -130,7 +128,8 @@ const renderer = {
             } : null
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
+        new VueLoaderPlugin()
     ],
     mode: process.env.NODE_ENV,
     target: 'web'

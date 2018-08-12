@@ -1,10 +1,17 @@
 <template>
     <div 
-        class="lm-avatar"
+        :class="[
+            'lm-avatar',
+            {
+                'lm-avatar-primary':this.theme === 'primary',
+                'lm-avatar-success':this.theme === 'success',
+                'lm-avatar-danger':this.theme === 'danger',                                
+            }
+        ]"
         @click="$emit('click',$event)"
         v-lazy="lazy && src"
         :style="{
-            width:isize+'px',
+            width: isize+'px',
             height:isize+'px',
             lineHeight:isize+'px',
             backgroundColor:color,
@@ -21,27 +28,19 @@
 </template>
 
 <script>
-    /**
-     * @param { String } Number
-     * @param { String } color
-     * @param { String } src
-     * @param { Boolean } lazy
-     * @event click
-     */
     export default {
         name:'Avatar',
         props:{
             color:String,
+            theme:String,
             icon:{
                 type:String,
                 default:'person'
             },
-            size:[String,Number],
+            size:[String, Number],
             src:String,
             lazy:Boolean,
             square:Boolean,
-            large:Boolean,
-            small:Boolean,
             text:String
         },
         created(){
@@ -54,9 +53,12 @@
         },
         computed:{
             isize(){
-                if(this.size) return this.size
-                if(this.large) return 40
-                if(this.small) return 24
+                if (!isNaN(this.size)) {
+                    if (this.size < 20) return 20
+                    return this.size
+                }
+                if (this.size === 'large') return 40
+                if (this.size === 'small') return 24
                 return 32
             }
         }
@@ -66,10 +68,10 @@
 <style lang="less">
     @import '../../styles/variable';
     .@{prefix}avatar{
-        width: 32px;
-        height: 32px;
+        width: @avatar-size;
+        height: @avatar-size;
         display: inline-block;
-        border-radius: 5px;
+        border-radius: 50%;
         background: @avatar-color;
         text-align: center;
         color: #fff;
@@ -77,6 +79,15 @@
         overflow: hidden;
         img{
             width: 100%;
+        }
+        &.@{prefix}avatar-success{
+            background-color: @success;
+        }
+        &.@{prefix}avatar-primary{
+            background-color:@primary;
+        }
+        &.@{prefix}avatar-danger{
+            background-color:@danger;
         }
     }
     .@{prefix}avatar-fadeIn{

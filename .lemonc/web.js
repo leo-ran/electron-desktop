@@ -17,14 +17,25 @@ function createRendererBundle(){
     return new Promise(resolve=>{
         webBundleConfig.entry.renderer = [path.join(__dirname,'dev-client.js')].concat(webBundleConfig.entry.renderer)
         const compiler = webpack(webBundleConfig)
-
+        
+        compiler.hooks.done.tap('LemoncPlugin',()=>{
+            resolve()
+        })
+        
         const server = new WebpackDevServer(
             compiler,
             {
                 contentBase: path.join(__dirname, '../'),
                 compress: true,
+                progress:true,
                 port: 9080,
                 open:true,
+                stats:{
+                    colors:true,
+                    chunks:false,
+                    assets:true,
+                    modules:false
+                },
                 before (app, ctx) {
                     app.use(webpackHotMiddleware(compiler,{
                         log: false, 
@@ -34,9 +45,10 @@ function createRendererBundle(){
             }
         )
         server.listen(9080)
-        resolve()
     })
 }
+
+
 
 
 createRendererBundle()

@@ -14,7 +14,6 @@
                 'lm-btn-block':block,
                 'lm-btn-loadding':Boolean(loadding),
                 'lm-btn-disabled':disabled
-
             }
         ]"
         :disabled="disabled"
@@ -34,7 +33,7 @@
                 type:String,
                 default:'default'
             },
-            loadding:[Boolean,String,Number],
+            loadding:[Boolean, String, Number],
             shape: String, // circle || square 
             size:String, // large || small || normal 
             value:String, 
@@ -51,14 +50,14 @@
         },
         filters:{
             number(value){
-                if(isNaN(value)) return value
+                if (isNaN(value)) return value
                 return 1
             }
         },
         methods:{
             click(){
-                if(this.loadding) return
-                if(this.disabled) return
+                if (this.loadding) return
+                if (this.disabled) return
             }
         }
     }
@@ -101,6 +100,7 @@
         border-color: @color;
         .@{prefix}spin span{
             background-color: contrast(@color);
+            border-color:  contrast(@color);
         }
         &:hover,
         &:focus{
@@ -169,6 +169,9 @@
                 .@{prefix}spin{
                     span{
                         background-color: lighten(@color,20%);
+                    }
+                    span.border{
+                        border-color: lighten(@color,20%);
                     }
                 }
             }

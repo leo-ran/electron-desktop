@@ -24,8 +24,10 @@ function buildMain(){
             //     chunks: false,
             //     colors:true
             // }))
+        })
+        compiler.hooks.done.tap('LemoncPlugin',()=>{
             spinner.succeed('main build end!')
-            r() 
+            r()
         })
     })
 }
@@ -38,10 +40,15 @@ function buildRenderer(){
                 return;
             }
             // console.log(stats.toString({
-            //     colors:true
+            //     colors:true,
+            //     chunks:false,
+            //     assets:true,
+            //     modules:false
             // }))
+        })
+        compiler.hooks.done.tap('LemoncPlugin',()=>{
             spinner.succeed('renderer build end!')
-            r() 
+            r()
         })
     })
 }

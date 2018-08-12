@@ -24,24 +24,9 @@
                 lazyState: !this.lazy
             }
         },
-        created(){
-            // window.addEventListener('resize',()=>{
-            //     if(!this.lazyState) return;
-            //     const dh = this.$refs.img.clientHeight
-            //     const dw = this.$refs.img.clientWidth
-            //     // let h = this.$refs.img.naturalHeight
-            //     let w = this.$refs.img.naturalWidth
-
-            
-            //     this.$emit('reload',{
-            //         height:w / dw * dh,
-            //         width:this.$refs.img.clientWidth
-            //     })
-            // })
-        },
         methods:{
             load(e){
-                this.$emit('reload',{
+                this.$emit('reload', {
                     height:e.target.clientHeight,
                     width:e.target.clientWidth
                 })

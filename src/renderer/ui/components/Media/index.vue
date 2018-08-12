@@ -37,7 +37,7 @@
         props:{
             lazy:Boolean,
             flex:Number,
-            src:[String,Array],
+            src:[String, Array],
             alt:String,
             row:Boolean,
             column:Boolean,
@@ -61,7 +61,7 @@
         },
         computed:{
             images(){
-                if(Array.isArray(this.src)){
+                if (Array.isArray(this.src)){
                     return this.src
                 } else {
                     return [ this.src ]
@@ -69,7 +69,7 @@
             },
             imagesMap(){
                 return this.images.map(img => {
-                    if(typeof img === 'object'){
+                    if (typeof img === 'object') {
                         return img
                     } else {
                         return {
@@ -81,10 +81,10 @@
         },
         methods:{
             imageLoad(img){
-                if(img.height){
-                    if(!this.imageMinHeight){
+                if (img.height){
+                    if (!this.imageMinHeight){
                         this.imageMinHeight = img.height
-                    } else if(img.height < this.imageMinHeight){
+                    } else if (img.height < this.imageMinHeight){
                         this.imageMinHeight = img.height
                     }
                 }

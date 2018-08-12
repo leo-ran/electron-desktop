@@ -1,0 +1,11 @@
+{
+    "plugins": [
+        "transform-runtime",
+        "transform-vue-jsx",
+        "dynamic-import-node"
+    ],
+    "presets": [
+        "env",
+        "es2015"
+    ]
+}
