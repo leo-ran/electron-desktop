@@ -2,9 +2,9 @@ import { app, BrowserWindow } from 'electron'
 
 const winURL = process.env.NODE_ENV === 'development'  ? 'http://localhost:9080' : `file://${__dirname}/index.html`
 
-let mainWindow
+let mainWindow: Electron.BrowserWindow | null
 
-function createWindow(){
+function createWindow() {
     mainWindow = new BrowserWindow({
         height: 563,
         width: 900,
@@ -16,18 +16,16 @@ function createWindow(){
     })
 
     mainWindow.loadURL(winURL)
-
-    
     mainWindow.on('closed', () => {
         mainWindow = null
         app.exit()
     })
 
     mainWindow.on('ready-to-show', () => {
-        mainWindow.show()
+        (mainWindow as BrowserWindow).show()
         // auto show DevTools
         if (process.env.NODE_ENV === 'development'){
-            mainWindow.webContents.openDevTools()
+            (mainWindow as BrowserWindow).webContents.openDevTools()
         }
     })
 
@@ -56,10 +54,9 @@ const shouldQuit = app.makeSingleInstance(() => {
             mainWindow.restore()
             mainWindow.focus()
         }
-        
     }
 })
+
 if (shouldQuit) {
     app.quit()
 }
-  

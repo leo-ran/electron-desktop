@@ -9,30 +9,19 @@ let production = process.env.NODE_ENV === 'production'
 
 const renderer = {
     entry:{
-        renderer: path.resolve('src','renderer','main.js')
+        renderer: path.resolve('src','renderer','main.ts')
     },
     module:{
         rules:[
             {
-                test:/\.js$/,
+                test:/\.(ts|tsx)$/,
                 include:path.resolve('src','renderer'),
                 exclude:/node_modules/,
-                use:'babel-loader'
+                use:['ts-loader','babel-loader','tslint-loader','vue-loader']
             },
             {
                 test:/\.vue$/,
-                use:'vue-loader'
-            },
-            {
-                test:/\.(js|vue)$/,
-                include:path.resolve('src','renderer'),
-                exclude: /node_modules/,
-                use:{
-                    loader:'eslint-loader',
-                    options:{
-                        formatter:require('eslint/lib/formatters/stylish')
-                    }
-                }
+                use:['vue-loader','tslint-loader']
             },
             {
                 test:/\.css$/,
@@ -94,7 +83,7 @@ const renderer = {
             '@': path.resolve('src','renderer'),
             'vue$': 'vue/dist/vue.esm.js'
         },
-        extensions: ['.js', '.vue', '.json', '.css', '.node']
+        extensions: ['.ts', '.js' , '.vue', '.json', '.css', '.node']
     },
     output:{
         path: path.resolve('dist','electron'),

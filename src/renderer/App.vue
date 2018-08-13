@@ -2,7 +2,7 @@
     export default {
         render(){
             return (
-                <div id="app">
+                <div id='app'>
                     <router-view />
                 </div>
             )

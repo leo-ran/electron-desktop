@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
     entry:{
-        main:path.resolve('src','main','index.js')
+        main:path.resolve('src','main','index.ts')
     },
     output:{
         filename:  '[name].js',
@@ -12,20 +12,10 @@ module.exports = {
     module:{
         rules:[
             {
-                test:/\.js$/,
+                test:/\.(ts)$/,
                 include:path.resolve('src','main'),
                 exclude:/node_modules/,
-                use:[{
-                    loader:'babel-loader',
-                    options:{
-                        presets: ['env','es2015']
-                    }
-                },{
-                    loader:'eslint-loader',
-                    options:{
-                        formatter:require('eslint/lib/formatters/stylish')
-                    }
-                }]
+                use:'tslint-loader'
             }
         ]
     },
@@ -34,7 +24,7 @@ module.exports = {
         __filename: process.env.NODE_ENV !== 'production'
     },
     resolve: {
-        extensions: ['.js', '.json', '.node']
+        extensions: ['.ts', '.json', '.node']
     },
     target: 'electron-main',
     mode: process.env.NODE_ENV
