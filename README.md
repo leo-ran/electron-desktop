@@ -24,14 +24,14 @@
 |   └─electron                  web文件生产目录
 ├─src                           开发目录
 |   ├─main                      主进程开发文件夹
-|   |   └─index.js              主进程入口文件
+|   |   └─index.ts              主进程入口文件
 |   ├─renderder                 renderder进程开发文件夹
 |   |   ├─assets                资源文件
 |   |   ├─components            组件
 |   |   ├─router                路由
 |   |   ├─store                 vuex
 |   |   ├─App.vue               App组件
-|   |   └─main.js               渲染进程入口
+|   |   └─main.ts               渲染进程入口
 |   └─index.html                html模板文件
 ├─license.txt                   打包应用时启动安装界面的协议文件
 ├─package.json                  包管理
