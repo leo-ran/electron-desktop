@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "esnext",
+        "target": "es2017",
         "module": "commonjs",
         "strict": true,
         "jsx": "preserve",
@@ -9,7 +9,7 @@
         "experimentalDecorators": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "sourceMap": true,
+        // "sourceMap": true,
         "baseUrl": ".",
         "types": [
             "node"
@@ -20,7 +20,7 @@
             ]
         },
         "lib": [
-            "esnext",
+            "es2017",
             "dom",
             "dom.iterable",
             "scripthost"
@@ -28,10 +28,8 @@
     },
     "include": [
         "src/**/*.ts",
-        "src/**/*.tsx",
-        "src/**/*.vue",
-        "tests/**/*.ts",
-        "tests/**/*.tsx"
+        "src/renderer/**/*.tsx",
+        "src/renderer/**/*.vue"
     ],
     "exclude": [
         "node_modules"

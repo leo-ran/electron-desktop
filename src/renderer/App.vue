@@ -1,11 +1,21 @@
 <script>
+    import { createNamespacedHelpers } from 'vuex'
+    const { mapGetters } = createNamespacedHelpers('user')
     export default {
-        render(){
+        render() {
             return (
                 <div id='app'>
                     <router-view />
                 </div>
             )
+        },
+        created(){
+            console.log(this.user)
+        },
+        computed:{
+            ...mapGetters([
+                'user'
+            ])
         }
     }
 </script>

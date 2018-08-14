@@ -29,4 +29,4 @@ linux:
   icon: build/icons
 win:
   icon: build/icons/icon.ico
-electronVersion: 2.0.7
+electronVersion: 2.0.6

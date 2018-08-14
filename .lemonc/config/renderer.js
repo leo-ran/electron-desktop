@@ -8,48 +8,63 @@ var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 let production = process.env.NODE_ENV === 'production'
 
 const renderer = {
-    entry:{
-        renderer: path.resolve('src','renderer','main.ts')
+    entry: {
+        renderer: path.resolve('src', 'renderer', 'main.ts')
     },
-    module:{
-        rules:[
+    module: {
+        rules: [
+            {
+                test: /\.vue$/,
+                include: path.resolve('src', 'renderer'),
+                exclude: /node_modules/,
+                use: 'vue-loader'
+            },
+            {
+                test: /\.(js|jsx)$/,
+                use: [{
+                    loader:'babel-loader'
+                }],
+                exclude: /node_modules/,
+                include: path.resolve('src', 'renderer')
+            },
             {
                 test:/\.(ts|tsx)$/,
-                include:path.resolve('src','renderer'),
-                exclude:/node_modules/,
-                use:['ts-loader','babel-loader','tslint-loader','vue-loader']
+                exclude: /node_modules/,
+                include: path.resolve('src', 'renderer'),
+                use: [{
+                    loader:'ts-loader',
+                    options: {
+                        appendTsSuffixTo: [/\.vue$/]
+                    }
+                }]
             },
             {
-                test:/\.vue$/,
-                use:['vue-loader','tslint-loader']
-            },
-            {
-                test:/\.css$/,
-                use:production ? [
-                   MiniCssExtractPlugin.loader,
+                test: /\.css$/,
+                use: production ? [
+                    MiniCssExtractPlugin.loader,
                     'style-loader',
                     'css-loader'
                 ] : [
-                    'style-loader',
-                    'css-loader'
-                ]
+                        'style-loader',
+                        'css-loader'
+                    ]
             },
             {
-                test:/\.less$/,
+                test: /\.less$/,
                 use: production ? [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'less-loader'
                 ] : [
-                    'style-loader',
-                    'css-loader',
-                    'less-loader'
-                ]
+                        'style-loader',
+                        'css-loader',
+                        'less-loader'
+                    ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 use: {
-                    loader:'url-loader',
+                    loader: 'url-loader',
                     options: {
                         limit: 10000,
                         name: production ? 'images/[name].[ext]' : 'images/[name].[hash:7].[ext]'
@@ -59,7 +74,7 @@ const renderer = {
             {
                 test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
                 use: {
-                    loader:'url-loader',
+                    loader: 'url-loader',
                     options: {
                         limit: 10000,
                         name: production ? 'medias/[name].[ext]' : 'medias/[name].[hash:7].[ext]'
@@ -69,10 +84,11 @@ const renderer = {
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 use: {
-                    loader:'url-loader',
-                    options:{
+                    loader: 'url-loader',
+                    options: {
                         limit: 10000,
-                        name: production ? 'fonts/[name].[ext]' : 'fonts/[name].[hash:7].[ext]'
+                        name: production ? 'fonts/[name].[ext]' : 'fonts/[name].[hash:7].[ext]',
+                        publicPath: '../'
                     }
                 }
             }
@@ -80,18 +96,19 @@ const renderer = {
     },
     resolve: {
         alias: {
-            '@': path.resolve('src','renderer'),
-            'vue$': 'vue/dist/vue.esm.js'
+            '@': path.resolve('src', 'renderer'),
+            'vue$': 'vue/dist/vue.esm.js',
+            'babel-core': path.resolve('node_modules','@babel','core')
         },
-        extensions: ['.ts', '.js' , '.vue', '.json', '.css', '.node']
+        extensions: ['.js', '.ts', '.vue', '.json', '.css', '.node']
     },
-    output:{
-        path: path.resolve('dist','electron'),
-        filename:`[name].js`,
+    output: {
+        path: path.resolve('dist', 'electron'),
+        filename: `[name].js`,
         libraryTarget: 'umd'
     },
-    optimization:{
-        minimize:process.env.NODE_ENV == 'production' ? true : false,
+    optimization: {
+        minimize: process.env.NODE_ENV == 'production' ? true : false,
         // https://www.webpackjs.com/plugins/split-chunks-plugin/
         splitChunks: process.env.NODE_ENV == 'production' ? {
             cacheGroups: {
@@ -103,16 +120,15 @@ const renderer = {
             }
         } : false
     },
-    stats:'minimal',
-    plugins:[
+    plugins: [
         // new webpack.ProgressPlugin(),
         // https://github.com/jantimon/html-webpack-plugin
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template:path.resolve('src','index.html'),
+            template: path.resolve('src', 'index.html'),
             minify: production ? {
                 removeComments: true,
-                inject:true,
+                inject: true,
                 collapseWhitespace: true,
                 removeAttributeQuotes: true
             } : null
@@ -125,7 +141,7 @@ const renderer = {
     target: 'electron-renderer'
 }
 
-if(production){
+if (production) {
     renderer.plugins.push(
         // https://github.com/webpack-contrib/mini-css-extract-plugin
         new MiniCssExtractPlugin({

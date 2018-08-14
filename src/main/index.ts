@@ -4,7 +4,7 @@ const winURL = process.env.NODE_ENV === 'development'  ? 'http://localhost:9080'
 
 let mainWindow: Electron.BrowserWindow | null
 
-function createWindow() {
+function createWindow(): void {
     mainWindow = new BrowserWindow({
         height: 563,
         width: 900,
@@ -24,7 +24,7 @@ function createWindow() {
     mainWindow.on('ready-to-show', () => {
         (mainWindow as BrowserWindow).show()
         // auto show DevTools
-        if (process.env.NODE_ENV === 'development'){
+        if (process.env.NODE_ENV === 'development') {
             (mainWindow as BrowserWindow).webContents.openDevTools()
         }
     })
@@ -48,7 +48,7 @@ app.on('activate', () => {
 
 
 // 禁止多个app实例启动
-const shouldQuit = app.makeSingleInstance(() => {
+const shouldQuit: boolean = app.makeSingleInstance(() => {
     if (mainWindow) {
         if (mainWindow.isMinimized()) {
             mainWindow.restore()

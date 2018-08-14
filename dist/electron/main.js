@@ -92,9 +92,21 @@ module.exports =
   !*** ./src/main/index.ts ***!
   \***************************/
 /*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst electron_1 = __webpack_require__(/*! electron */ \"electron\");\r\nconst winURL =  true ? 'http://localhost:9080' : undefined;\r\nlet mainWindow;\r\nfunction createWindow() {\r\n    mainWindow = new electron_1.BrowserWindow({\r\n        height: 563,\r\n        width: 900,\r\n        // useContentSize:true,\r\n        // frame: process.platform !== 'darwin' ? false : true,\r\n        // titleBarStyle: 'hiddenInset',\r\n        // backgroundColor: '#fff',\r\n        show: false\r\n    });\r\n    mainWindow.loadURL(winURL);\r\n    mainWindow.on('closed', () => {\r\n        mainWindow = null;\r\n        electron_1.app.exit();\r\n    });\r\n    mainWindow.on('ready-to-show', () => {\r\n        mainWindow.show();\r\n        // auto show DevTools\r\n        if (true) {\r\n            mainWindow.webContents.openDevTools();\r\n        }\r\n    });\r\n    mainWindow.flashFrame(true);\r\n}\r\nelectron_1.app.on('ready', createWindow);\r\nelectron_1.app.on('window-all-closed', () => {\r\n    if (process.platform !== 'darwin') {\r\n        electron_1.app.quit();\r\n    }\r\n});\r\nelectron_1.app.on('activate', () => {\r\n    if (mainWindow === null) {\r\n        createWindow();\r\n    }\r\n});\r\n// 禁止多个app实例启动\r\nconst shouldQuit = electron_1.app.makeSingleInstance(() => {\r\n    if (mainWindow) {\r\n        if (mainWindow.isMinimized()) {\r\n            mainWindow.restore();\r\n            mainWindow.focus();\r\n        }\r\n    }\r\n});\r\nif (shouldQuit) {\r\n    electron_1.app.quit();\r\n}\r\n\n\n//# sourceURL=webpack:///./src/main/index.ts?");
+
+/***/ }),
+
+/***/ "electron":
+/*!***************************!*\
+  !*** external "electron" ***!
+  \***************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("throw new Error(\"Module parse failed: Unexpected token (5:14)\\nYou may need an appropriate loader to handle this file type.\\n| const winURL = process.env.NODE_ENV === 'development'  ? 'http://localhost:9080' : `file://${__dirname}/index.html`\\n| \\n> let mainWindow: Electron.BrowserWindow | null\\n| \\n| function createWindow() {\");\n\n//# sourceURL=webpack:///./src/main/index.ts?");
+eval("module.exports = require(\"electron\");\n\n//# sourceURL=webpack:///external_%22electron%22?");
 
 /***/ })
 
