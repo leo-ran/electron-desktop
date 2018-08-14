@@ -3,13 +3,14 @@ import App from './App.vue'
 import store from './store'
 import router from './router'
 
-console.log(store)
-
 const app = new Vue({
-    el: '#app',
     store,
     router,
-    render: (h:CreateElement) => h(App)
+    render: (h: CreateElement) => h(App, {
+        props: {
+            value: 100
+        }
+    })
 })
 
 app.$mount('#app')

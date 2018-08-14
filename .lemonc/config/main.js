@@ -12,11 +12,10 @@ module.exports = {
     module:{
         rules:[
             {
-                test:/\.(ts)$/,
+                test:/\.ts$/,
                 include:path.resolve('src','main'),
                 exclude:/node_modules/,
                 use:[
-                    'tslint-loader',
                     'ts-loader'
                 ]
             }

@@ -17,26 +17,40 @@ const renderer = {
                 test: /\.vue$/,
                 include: path.resolve('src', 'renderer'),
                 exclude: /node_modules/,
-                use: 'vue-loader'
+                use: [{
+                    loader: 'vue-loader',
+                    options:{
+                        extractCSS: true
+                    }
+                }]
             },
             {
                 test: /\.(js|jsx)$/,
-                use: [{
-                    loader:'babel-loader'
-                }],
+                use: 'babel-loader',
                 exclude: /node_modules/,
                 include: path.resolve('src', 'renderer')
             },
             {
-                test:/\.(ts|tsx)$/,
+                test: /\.tsx$/,
+                exclude: /node_modules/,
+                include: path.resolve('src','renderer'),
+                use: ['babel-loader',{
+                    loader:'ts-loader',
+                    options: {
+                        appendTsxSuffixTo: [/\.vue$/]
+                    }
+                }]
+            },
+            {
+                test:/\.ts$/,
                 exclude: /node_modules/,
                 include: path.resolve('src', 'renderer'),
-                use: [{
+                use: {
                     loader:'ts-loader',
                     options: {
                         appendTsSuffixTo: [/\.vue$/]
                     }
-                }]
+                }
             },
             {
                 test: /\.css$/,
@@ -44,10 +58,10 @@ const renderer = {
                     MiniCssExtractPlugin.loader,
                     'style-loader',
                     'css-loader'
-                ] : [
-                        'style-loader',
-                        'css-loader'
-                    ]
+                ]:[
+                    'style-loader',
+                    'css-loader'
+                ]
             },
             {
                 test: /\.less$/,
@@ -55,11 +69,11 @@ const renderer = {
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'less-loader'
-                ] : [
-                        'style-loader',
-                        'css-loader',
-                        'less-loader'
-                    ]
+                ]:[
+                    'style-loader',
+                    'css-loader',
+                    'less-loader'
+                ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -100,7 +114,7 @@ const renderer = {
             'vue$': 'vue/dist/vue.esm.js',
             'babel-core': path.resolve('node_modules','@babel','core')
         },
-        extensions: ['.js', '.ts', '.vue', '.json', '.css', '.node']
+        extensions: ['.js','.jsx', '.ts', '.tsx' , '.vue', '.json', '.css', '.node']
     },
     output: {
         path: path.resolve('dist', 'electron'),
