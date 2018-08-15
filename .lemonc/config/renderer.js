@@ -2,28 +2,16 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { VueLoaderPlugin } = require('vue-loader')
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 let production = process.env.NODE_ENV === 'production'
 
 const renderer = {
     entry: {
-        renderer: path.resolve('src', 'renderer', 'main.ts')
+        renderer: path.resolve('src', 'renderer', 'main.tsx')
     },
     module: {
         rules: [
-            {
-                test: /\.vue$/,
-                include: path.resolve('src', 'renderer'),
-                exclude: /node_modules/,
-                use: [{
-                    loader: 'vue-loader',
-                    options:{
-                        extractCSS: true
-                    }
-                }]
-            },
             {
                 test: /\.(js|jsx)$/,
                 use: 'babel-loader',
@@ -47,32 +35,56 @@ const renderer = {
                 include: path.resolve('src', 'renderer'),
                 use: {
                     loader:'ts-loader',
-                    options: {
-                        appendTsSuffixTo: [/\.vue$/]
-                    }
                 }
             },
             {
-                test: /\.css$/,
+                test: /\.(c|postc|s)ss$/,
                 use: production ? [
                     MiniCssExtractPlugin.loader,
-                    'style-loader',
-                    'css-loader'
+                    {
+                        loader:'css-loader',
+                        options: {
+                            import: true, // 启用@import
+                            modules: true // 启用modules
+                        }
+                    },
+                    'postcss-loader'
                 ]:[
                     'style-loader',
-                    'css-loader'
+                    {
+                        loader:'css-loader',
+                        options: {
+                            import: true, // 启用@import
+                            modules: true // 启用modules
+                        }
+                    },
+                    'postcss-loader'
                 ]
             },
             {
                 test: /\.less$/,
                 use: production ? [
                     MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'less-loader'
+                    {
+                        loader:'css-loader',
+                        options: {
+                            import: true, // 启用@import
+                            modules: true // 启用modules
+                        }
+                    },
+                    'less-loader',
+                    'postcss-loader'
                 ]:[
                     'style-loader',
-                    'css-loader',
-                    'less-loader'
+                    {
+                        loader:'css-loader',
+                        options: {
+                            import: true, // 启用@import
+                            modules: true // 启用modules
+                        }
+                    },
+                    'less-loader',
+                    'postcss-loader'
                 ]
             },
             {
@@ -114,7 +126,7 @@ const renderer = {
             'vue$': 'vue/dist/vue.esm.js',
             'babel-core': path.resolve('node_modules','@babel','core')
         },
-        extensions: ['.js','.jsx', '.ts', '.tsx' , '.vue', '.json', '.css', '.node']
+        extensions: ['.js','.jsx', '.ts', '.tsx' , '.json', '.css', '.node']
     },
     output: {
         path: path.resolve('dist', 'electron'),
@@ -149,7 +161,6 @@ const renderer = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
-        new VueLoaderPlugin()
     ],
     mode: process.env.NODE_ENV,
     target: 'electron-renderer'

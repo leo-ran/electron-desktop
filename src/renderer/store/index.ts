@@ -1,19 +1,21 @@
-import Vue from 'vue'
-import Vuex, { ModuleTree } from 'vuex'
-import user from './modules/user'
-import test from './modules/test'
+import { createStore, combineReducers } from 'redux'
+export * from '@/store/actions'
+export * from '@/store/state'
 
-Vue.use(Vuex)
-
-export interface RootState {
-    [index: string]: any;
+export interface Action {
+    type: string;
+    data: any;
 }
 
-const modules:ModuleTree<RootState> = {
+const user = (state = {}, action: Action) => {
+    if (action.type === 'TEST') {
+        return {...state, ...action.data}
+    }
+    return state
+}
+
+const reducer = combineReducers({
     user
-}
-
-export default new Vuex.Store({
-    modules
 })
 
+export const store = createStore(reducer)

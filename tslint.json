@@ -9,7 +9,7 @@
       ]
     },
     "rules": {
-      "quotemark": [true, "single"],
+      "quotemark": [true, "single","jsx-double"],
       "indent": [true, "spaces", 2],
       "interface-name": false,
       "ordered-imports": false,
@@ -18,7 +18,8 @@
       "semicolon":false,
       "trailing-comma":false,
       "variable-name":[true, "ban-keywords", "check-format", "allow-pascal-case","allow-snake-case"],
-      "no-var-requires": false
+      "no-var-requires": false,
+      "no-console":false
     }
   }
   
