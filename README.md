@@ -1,9 +1,16 @@
-# lemonc for vue
+# lemonc for typescript react
+
 ![image](https://img.shields.io/badge/elctron-^2.0.5-green.svg)
-![image](https://img.shields.io/badge/vue-^2.5.16-green.svg)
+![image](https://img.shields.io/badge/react-^16.4.1-green.svg)
+![image](https://img.shields.io/badge/typescript-^3.0.1-green.svg)
+![image](https://img.shields.io/badge/reactdom-^16.4.1-green.svg)
+![image](https://img.shields.io/badge/reactredux-^5.0.7-green.svg)
+![image](https://img.shields.io/badge/redux-^4.0.0-green.svg)
 ![image](https://img.shields.io/badge/webpack-^4.16.3-green.svg)
 ![image](https://img.shields.io/badge/less-^3.8.0-green.svg)
-![image](https://img.shields.io/badge/eslint-^5.2.0-green.svg)
+![image](https://img.shields.io/badge/tslint-^5.11.0-green.svg)
+
+使用webpack搭建的electron 基础脚手架，主分支是基础脚手架，若需使用前端框架可切换以下分支
 
 ### Application directory
 
@@ -28,10 +35,9 @@
 |   ├─renderder                 renderder进程开发文件夹
 |   |   ├─assets                资源文件
 |   |   ├─components            组件
-|   |   ├─router                路由
-|   |   ├─store                 vuex
-|   |   ├─App.vue               App组件
-|   |   └─main.ts               渲染进程入口
+|   |   ├─store                 redux
+|   |   ├─App.tsx               App组件
+|   |   └─main.tsx              渲染进程入口
 |   └─index.html                html模板文件
 ├─license.txt                   打包应用时启动安装界面的协议文件
 ├─package.json                  包管理
