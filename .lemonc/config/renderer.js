@@ -14,7 +14,7 @@ const renderer = {
     module:{
         rules:[
             {
-                test:/\.js$/,
+                test:/\.(js|jsx)$/,
                 include:path.resolve('src','renderer'),
                 exclude:/node_modules/,
                 use:'babel-loader'
@@ -92,9 +92,10 @@ const renderer = {
     resolve: {
         alias: {
             '@': path.resolve('src','renderer'),
-            'vue$': 'vue/dist/vue.esm.js'
+            'vue$': 'vue/dist/vue.esm.js',
+            'babel-core': path.resolve('node_modules','@babel','core')
         },
-        extensions: ['.js', '.vue', '.json', '.css', '.node']
+        extensions: ['.js','.jsx', '.vue', '.json', '.css', '.node']
     },
     output:{
         path: path.resolve('dist','electron'),

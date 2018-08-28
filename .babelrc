@@ -1,11 +1,10 @@
 {
     "plugins": [
-        "transform-runtime",
         "transform-vue-jsx",
-        "dynamic-import-node"
+        "dynamic-import-node",
+        "@babel/plugin-transform-runtime"
     ],
     "presets": [
-        "env",
-        "es2015"
+        "@babel/preset-env"
     ]
 }

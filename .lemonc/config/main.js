@@ -16,10 +16,7 @@ module.exports = {
                 include:path.resolve('src','main'),
                 exclude:/node_modules/,
                 use:[{
-                    loader:'babel-loader',
-                    options:{
-                        presets: ['env','es2015']
-                    }
+                    loader:'babel-loader'
                 },{
                     loader:'eslint-loader',
                     options:{
@@ -34,6 +31,9 @@ module.exports = {
         __filename: process.env.NODE_ENV !== 'production'
     },
     resolve: {
+        alias: {
+            'babel-core': path.resolve('node_modules','@babel','core')
+        },
         extensions: ['.js', '.json', '.node']
     },
     target: 'electron-main',
