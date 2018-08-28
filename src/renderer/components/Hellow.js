@@ -10,7 +10,9 @@ class Hellow extends Component {
     }
     render() {
         return (
-            <div className="welcome" style={{'text-align':'center'}}>
+            <div className="welcome" style={{
+                'text-align':'center'
+            }}>
                 <h1>{this.state.title}</h1>
                 <div className="logo">
                     <img height="100px" src={require('../assets/images/logo.png')}/>
