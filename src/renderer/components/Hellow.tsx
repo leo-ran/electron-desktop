@@ -1,12 +1,16 @@
-import React, { Component, Props } from 'react'
+import React, { Component } from 'react'
 
 export interface HellowProps {
     title: string;
 }
 
-class Hellow extends Component {
+interface PropTypes {
+    test?: string;
+}
+
+class Hellow extends Component<PropTypes> {
     public state: HellowProps;
-    constructor(props: Props<any>) {
+    constructor(props: Readonly<PropTypes>) {
         super(props)
         this.state = {
             title: 'Electron for react'

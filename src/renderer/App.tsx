@@ -7,7 +7,7 @@ class App extends Component {
     public render() {
         return (
             <div className="app">
-                <Hellow />
+                <Hellow test="xx" />
             </div>
         )
     }
