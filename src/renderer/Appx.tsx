@@ -1,4 +1,5 @@
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from '@vuets/class'
+
 @Component
 export default class App extends Vue {
     public render() {

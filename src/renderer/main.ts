@@ -1,5 +1,5 @@
 import Vue, { CreateElement } from 'vue'
-import App from './App.vue'
+import App from './Appx'
 import store from './store'
 import router from './router'
 

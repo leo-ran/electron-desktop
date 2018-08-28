@@ -1,18 +1,18 @@
-import { Module, ModuleTree } from "vuex";
-import { RootState } from '@/store';
-import state, { UserState } from './state'
-import getters from './getters'
-import test from '../test'
+import { Module } from 'vuex'
 
-const modules:ModuleTree<RootState> = {
-    test
+interface UserState {
+    name: string;
 }
-
-const user: Module<any, RootState> = {
+const user: Module<any, any> = {
     namespaced: true,
-    state,
-    getters,
-    modules
+    state: {
+        name: 'john'
+    },
+    getters: {
+        name(state: UserState) {
+            return state.name
+        }
+    }
 }
 
 export default user
