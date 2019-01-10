@@ -1,30 +1,22 @@
 {
-  "name": "vscode-textmate",
-  "version": "4.0.1",
-  "description": "VSCode TextMate grammar helpers",
+  "name": "electorn-desktop-textmate",
+  "version": "1.0.0",
+  "description": "electorn desktop grammar helpers",
   "author": {
-    "name": "Microsoft Corporation"
+    "name": "ranyunlong"
   },
-  "main": "./release/main.js",
-  "typings": "./release/main.d.ts",
+  "main": "./out/main.js",
+  "typings": "./out/main.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Microsoft/vscode-textmate"
+    "url": "https://github.com/ranyunlong/electron"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Microsoft/vscode-textmate/issues"
   },
   "scripts": {
-    "watch": "tsc -watch",
-    "compile": "tsc",
-    "test": "npm run compile && mocha out/tests/*.test.js",
-    "test-travis": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec out/tests/",
-    "benchmark": "node benchmark/benchmark.js",
-    "inspect": "node scripts/inspect.js",
-    "version": "npm run test && node scripts/release.js",
-    "postversion": "git push && git push --tags",
-    "prepublishOnly": "node scripts/release.js"
+    "compile": "tsc"
   },
   "dependencies": {
     "oniguruma": "^7.0.0"

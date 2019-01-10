@@ -12,8 +12,6 @@ import { IGrammarRegistration, Resolver, ILanguageRegistration } from './resolve
 import { getOnigasm, getOniguruma } from '../onigLibs';
 import { Registry, StackElement } from '../main';
 
-declare module 'durations';
-
 describe.skip('Compare OnigLibs outputs', () => {
 	let registrations = getVSCodeRegistrations();;
 	if (!registrations) {
