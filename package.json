@@ -9,7 +9,7 @@
   "typings": "./out/main.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ranyunlong/electron"
+    "url": "https://github.com/ranyunlong/electron-desktop/tree/textmate"
   },
   "license": "MIT",
   "bugs": {
