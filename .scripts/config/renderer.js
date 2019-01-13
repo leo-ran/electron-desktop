@@ -22,7 +22,7 @@ const renderer = {
                 test: /\.tsx$/,
                 exclude: /node_modules/,
                 include: path.resolve('src','renderer'),
-                use: ['babel-loader',{
+                use: [{
                     loader:'ts-loader',
                     options: {
                         appendTsxSuffixTo: [/\.vue$/]
@@ -122,11 +122,9 @@ const renderer = {
     },
     resolve: {
         alias: {
-            '@': path.resolve('src', 'renderer'),
-            'vue$': 'vue/dist/vue.esm.js',
-            'babel-core': path.resolve('node_modules','@babel','core')
+            '@': path.resolve('src', 'renderer')
         },
-        extensions: ['.js','.jsx', '.ts', '.tsx' , '.json', '.css', '.node']
+        extensions: ['.js','.jsx', '.ts', '.tsx' , '.json', '.node']
     },
     output: {
         path: path.resolve('dist', 'electron'),

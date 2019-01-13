@@ -27,8 +27,8 @@ class Hellow extends Component<PropTypes> {
                     <img height="100px" src={require('../assets/images/logo.png')}/>
                 </div>
                 <p> node: {process.versions.node} </p>
-                <p> node: {process.versions.chrome} </p>
-                <p> node: {process.versions.electron} </p>
+                <p> chrome: {process.versions.chrome} </p>
+                <p> electron: {process.versions.electron} </p>
             </div>
         )
     }

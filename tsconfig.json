@@ -28,8 +28,7 @@
     },
     "include": [
         "src/**/*.ts",
-        "src/renderer/**/*.tsx",
-        "src/renderer/**/*.vue"
+        "src/renderer/**/*.tsx"
     ],
     "exclude": [
         "node_modules"

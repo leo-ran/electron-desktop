@@ -1,3 +1,7 @@
+/**
+ * Start development service
+ */
+import './dev.service'
 import { app, BrowserWindow } from 'electron'
 
 const winURL = process.env.NODE_ENV === 'development'  ? 'http://localhost:9080' : `file://${__dirname}/index.html`
@@ -45,18 +49,3 @@ app.on('activate', () => {
         createWindow()
     }
 })
-
-
-// 禁止多个app实例启动
-const shouldQuit: boolean = app.makeSingleInstance(() => {
-    if (mainWindow) {
-        if (mainWindow.isMinimized()) {
-            mainWindow.restore()
-            mainWindow.focus()
-        }
-    }
-})
-
-if (shouldQuit) {
-    app.quit()
-}

@@ -87,6 +87,18 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/main/dev.service.ts":
+/*!*********************************!*\
+  !*** ./src/main/dev.service.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst electron_1 = __webpack_require__(/*! electron */ \"electron\");\r\nif (true) {\r\n    process.on('message', ({ exit, error }) => {\r\n        if (exit) {\r\n            electron_1.app.exit();\r\n        }\r\n        else if (error) {\r\n            electron_1.dialog.showErrorBox('Main process render Error.', '');\r\n        }\r\n    });\r\n}\r\n\n\n//# sourceURL=webpack:///./src/main/dev.service.ts?");
+
+/***/ }),
+
 /***/ "./src/main/index.ts":
 /*!***************************!*\
   !*** ./src/main/index.ts ***!
@@ -95,7 +107,7 @@ module.exports =
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst electron_1 = __webpack_require__(/*! electron */ \"electron\");\r\nconst winURL =  true ? 'http://localhost:9080' : undefined;\r\nlet mainWindow;\r\nfunction createWindow() {\r\n    mainWindow = new electron_1.BrowserWindow({\r\n        height: 563,\r\n        width: 900,\r\n        // useContentSize:true,\r\n        // frame: process.platform !== 'darwin' ? false : true,\r\n        // titleBarStyle: 'hiddenInset',\r\n        // backgroundColor: '#fff',\r\n        show: false\r\n    });\r\n    mainWindow.loadURL(winURL);\r\n    mainWindow.on('closed', () => {\r\n        mainWindow = null;\r\n        electron_1.app.exit();\r\n    });\r\n    mainWindow.on('ready-to-show', () => {\r\n        mainWindow.show();\r\n        // auto show DevTools\r\n        if (true) {\r\n            mainWindow.webContents.openDevTools();\r\n        }\r\n    });\r\n    mainWindow.flashFrame(true);\r\n}\r\nelectron_1.app.on('ready', createWindow);\r\nelectron_1.app.on('window-all-closed', () => {\r\n    if (process.platform !== 'darwin') {\r\n        electron_1.app.quit();\r\n    }\r\n});\r\nelectron_1.app.on('activate', () => {\r\n    if (mainWindow === null) {\r\n        createWindow();\r\n    }\r\n});\r\n// 禁止多个app实例启动\r\nconst shouldQuit = electron_1.app.makeSingleInstance(() => {\r\n    if (mainWindow) {\r\n        if (mainWindow.isMinimized()) {\r\n            mainWindow.restore();\r\n            mainWindow.focus();\r\n        }\r\n    }\r\n});\r\nif (shouldQuit) {\r\n    electron_1.app.quit();\r\n}\r\n\n\n//# sourceURL=webpack:///./src/main/index.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n/**\r\n * Start development service\r\n */\r\n__webpack_require__(/*! ./dev.service */ \"./src/main/dev.service.ts\");\r\nconst electron_1 = __webpack_require__(/*! electron */ \"electron\");\r\nconst winURL =  true ? 'http://localhost:9080' : undefined;\r\nlet mainWindow;\r\nfunction createWindow() {\r\n    mainWindow = new electron_1.BrowserWindow({\r\n        height: 563,\r\n        width: 900,\r\n        // useContentSize:true,\r\n        // frame: process.platform !== 'darwin' ? false : true,\r\n        // titleBarStyle: 'hiddenInset',\r\n        // backgroundColor: '#fff',\r\n        show: false\r\n    });\r\n    mainWindow.loadURL(winURL);\r\n    mainWindow.on('closed', () => {\r\n        mainWindow = null;\r\n        electron_1.app.exit();\r\n    });\r\n    mainWindow.on('ready-to-show', () => {\r\n        mainWindow.show();\r\n        // auto show DevTools\r\n        if (true) {\r\n            mainWindow.webContents.openDevTools();\r\n        }\r\n    });\r\n    mainWindow.flashFrame(true);\r\n}\r\nelectron_1.app.on('ready', createWindow);\r\nelectron_1.app.on('window-all-closed', () => {\r\n    if (process.platform !== 'darwin') {\r\n        electron_1.app.quit();\r\n    }\r\n});\r\nelectron_1.app.on('activate', () => {\r\n    if (mainWindow === null) {\r\n        createWindow();\r\n    }\r\n});\r\n\n\n//# sourceURL=webpack:///./src/main/index.ts?");
 
 /***/ }),
 

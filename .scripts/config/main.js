@@ -15,9 +15,7 @@ module.exports = {
                 test:/\.ts$/,
                 include:path.resolve('src','main'),
                 exclude:/node_modules/,
-                use:[
-                    'ts-loader'
-                ]
+                use: 'ts-loader'
             }
         ]
     },

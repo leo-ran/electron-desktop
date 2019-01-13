@@ -8,7 +8,7 @@ const del = require('del')
 const path = require('path')
 const logger = require('./util/logger')
 
-const spinner = ora('Lemonc builder is start running... \n').start();
+const spinner = ora('Electron builder is start running... \n').start();
 
 logger.logo()
 del.sync([path.resolve('dist','electron')])
@@ -25,7 +25,7 @@ function buildMain(){
             //     colors:true
             // }))
         })
-        compiler.hooks.done.tap('LemoncPlugin',()=>{
+        compiler.hooks.done.tap('electron-desktop-plugin',()=>{
             spinner.succeed('main build end!')
             r()
         })
@@ -46,7 +46,7 @@ function buildRenderer(){
             //     modules:false
             // }))
         })
-        compiler.hooks.done.tap('LemoncPlugin',()=>{
+        compiler.hooks.done.tap('electron-desktop-plugin',()=>{
             spinner.succeed('renderer build end!')
             r()
         })
