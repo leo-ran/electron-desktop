@@ -15,7 +15,7 @@ module.exports = {
                 test:/\.js$/,
                 include:path.resolve('src','main'),
                 exclude:/node_modules/,
-                use:[{
+                use:['babel-loader', {
                     loader:'eslint-loader',
                     options:{
                         formatter:require('eslint/lib/formatters/stylish')

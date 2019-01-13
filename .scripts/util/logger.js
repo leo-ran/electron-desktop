@@ -29,7 +29,7 @@ function info(text) {
 }
 
 function logo(text) {
-    cfonts.say(text || 'Lemonc', {
+    cfonts.say(text || 'Electron', {
         font: 'simple',
         align: 'left',
         colors: ['magenta'],

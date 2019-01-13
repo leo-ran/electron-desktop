@@ -10,16 +10,23 @@ class Hellow extends Component {
     }
     render() {
         return (
-            <div className="welcome" style={{
-                'text-align':'center'
-            }}>
+            <div
+                className="welcome"
+                style={{
+                    textAlign:'center'
+                }}
+            >
                 <h1>{this.state.title}</h1>
                 <div className="logo">
-                    <img height="100px" src={require('../assets/images/logo.png')}/>
+                    <img height="100px"
+                        src={
+                            require('../assets/images/logo.png')
+                        }
+                    />
                 </div>
                 <p> node: {process.versions.node} </p>
-                <p> node: {process.versions.chrome} </p>
-                <p> node: {process.versions.electron} </p>
+                <p> chrome: {process.versions.chrome} </p>
+                <p> electron: {process.versions.electron} </p>
             </div>
         )
     }
