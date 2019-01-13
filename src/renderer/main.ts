@@ -1,4 +1,4 @@
-import Vue, { CreateElement } from 'vue'
+import Vue, { CreateElement } from '@vuets/class'
 import App from './Appx'
 import store from './store'
 import router from './router'
@@ -6,11 +6,7 @@ import router from './router'
 const app = new Vue({
     store,
     router,
-    render: (h: CreateElement) => h(App, {
-        props: {
-            value: 100
-        }
-    })
+    render: (h: CreateElement) => h(App)
 })
 
 app.$mount('#app')

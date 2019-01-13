@@ -1,4 +1,5 @@
-import { Component, Vue } from '@vuets/class'
+import Vue from '@vuets/class'
+import { Component } from 'vue-property-decorator'
 
 @Component
 export default class App extends Vue {

@@ -31,7 +31,7 @@ const renderer = {
                 include: path.resolve('src', 'renderer')
             },
             {
-                test: /\.tsx$/,
+                test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
                 include: path.resolve('src','renderer'),
                 use: ['babel-loader',{
@@ -42,21 +42,9 @@ const renderer = {
                 }]
             },
             {
-                test:/\.ts$/,
-                exclude: /node_modules/,
-                include: path.resolve('src', 'renderer'),
-                use: {
-                    loader:'ts-loader',
-                    options: {
-                        appendTsSuffixTo: [/\.vue$/]
-                    }
-                }
-            },
-            {
                 test: /\.css$/,
                 use: production ? [
                     MiniCssExtractPlugin.loader,
-                    'style-loader',
                     'css-loader'
                 ]:[
                     'style-loader',
@@ -111,10 +99,9 @@ const renderer = {
     resolve: {
         alias: {
             '@': path.resolve('src', 'renderer'),
-            'vue$': 'vue/dist/vue.esm.js',
-            'babel-core': path.resolve('node_modules','@babel','core')
+            'vue$': 'vue/dist/vue.esm.js'
         },
-        extensions: ['.js','.jsx', '.ts', '.tsx' , '.vue', '.json', '.css', '.node']
+        extensions: ['.js','.jsx', '.ts', '.tsx' , '.vue', '.json', '.node']
     },
     output: {
         path: path.resolve('dist', 'electron'),

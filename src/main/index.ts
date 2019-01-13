@@ -1,8 +1,9 @@
+import './dev.service'
 import { app, BrowserWindow } from 'electron'
 
 const winURL = process.env.NODE_ENV === 'development'  ? 'http://localhost:9080' : `file://${__dirname}/index.html`
 
-let mainWindow: Electron.BrowserWindow | null
+let mainWindow: BrowserWindow | null;
 
 function createWindow(): void {
     mainWindow = new BrowserWindow({
@@ -45,18 +46,3 @@ app.on('activate', () => {
         createWindow()
     }
 })
-
-
-// 禁止多个app实例启动
-const shouldQuit: boolean = app.makeSingleInstance(() => {
-    if (mainWindow) {
-        if (mainWindow.isMinimized()) {
-            mainWindow.restore()
-            mainWindow.focus()
-        }
-    }
-})
-
-if (shouldQuit) {
-    app.quit()
-}

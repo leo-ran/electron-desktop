@@ -1,15 +1,16 @@
-# lemonc for typecript vue
-![image](https://img.shields.io/badge/elctron-^2.0.5-green.svg)
-![image](https://img.shields.io/badge/vue-^2.5.16-green.svg)
-![image](https://img.shields.io/badge/webpack-^4.16.3-green.svg)
-![image](https://img.shields.io/badge/less-^3.8.0-green.svg)
-![image](https://img.shields.io/badge/eslint-^5.2.0-green.svg)
+# lemonc for vue
+![image](https://img.shields.io/badge/electron-^4.0.1-blue.svg)
+![image](https://img.shields.io/badge/vue-^2.5.21-blue.svg)
+![image](https://img.shields.io/badge/webpack-^4.28.3-blue.svg)
+![image](https://img.shields.io/badge/less-^3.9.0-blue.svg)
+![image](https://img.shields.io/badge/eslint-^5.11.1-blue.svg)
+![image](https://img.shields.io/badge/typescript-^3.2.2-blue.svg)
 
 ### Application directory
 
 ```
 目录（或者子目录）
-├─.lemonc                       lemonc 编译器
+├─.scripts                      electron 编译配置
 |   ├─config                    webpack打包配置
 |   |   ├─main.js               main进程编译配置
 |   |   └─renderer.js           renderer进程编译配置
@@ -24,6 +25,7 @@
 |   └─electron                  web文件生产目录
 ├─src                           开发目录
 |   ├─main                      主进程开发文件夹
+|   |   ├─dev.service.ts        主进程开发服务
 |   |   └─index.ts              主进程入口文件
 |   ├─renderder                 renderder进程开发文件夹
 |   |   ├─assets                资源文件

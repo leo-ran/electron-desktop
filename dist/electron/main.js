@@ -87,15 +87,27 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/main/dev.service.ts":
+/*!*********************************!*\
+  !*** ./src/main/dev.service.ts ***!
+  \*********************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);\n\r\nif (true) {\r\n    process.on('message', ({ exit, error }) => {\r\n        if (exit) {\r\n            electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].exit();\r\n        }\r\n        else if (error) {\r\n            electron__WEBPACK_IMPORTED_MODULE_0__[\"dialog\"].showErrorBox('Main process render Error.', '');\r\n        }\r\n    });\r\n}\r\n\n\n//# sourceURL=webpack:///./src/main/dev.service.ts?");
+
+/***/ }),
+
 /***/ "./src/main/index.ts":
 /*!***************************!*\
   !*** ./src/main/index.ts ***!
   \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst electron_1 = __webpack_require__(/*! electron */ \"electron\");\r\nconst winURL =  true ? 'http://localhost:9080' : undefined;\r\nlet mainWindow;\r\nfunction createWindow() {\r\n    mainWindow = new electron_1.BrowserWindow({\r\n        height: 563,\r\n        width: 900,\r\n        // useContentSize:true,\r\n        // frame: process.platform !== 'darwin' ? false : true,\r\n        // titleBarStyle: 'hiddenInset',\r\n        // backgroundColor: '#fff',\r\n        show: false\r\n    });\r\n    mainWindow.loadURL(winURL);\r\n    mainWindow.on('closed', () => {\r\n        mainWindow = null;\r\n        electron_1.app.exit();\r\n    });\r\n    mainWindow.on('ready-to-show', () => {\r\n        mainWindow.show();\r\n        // auto show DevTools\r\n        if (true) {\r\n            mainWindow.webContents.openDevTools();\r\n        }\r\n    });\r\n    mainWindow.flashFrame(true);\r\n}\r\nelectron_1.app.on('ready', createWindow);\r\nelectron_1.app.on('window-all-closed', () => {\r\n    if (process.platform !== 'darwin') {\r\n        electron_1.app.quit();\r\n    }\r\n});\r\nelectron_1.app.on('activate', () => {\r\n    if (mainWindow === null) {\r\n        createWindow();\r\n    }\r\n});\r\n// 禁止多个app实例启动\r\nconst shouldQuit = electron_1.app.makeSingleInstance(() => {\r\n    if (mainWindow) {\r\n        if (mainWindow.isMinimized()) {\r\n            mainWindow.restore();\r\n            mainWindow.focus();\r\n        }\r\n    }\r\n});\r\nif (shouldQuit) {\r\n    electron_1.app.quit();\r\n}\r\n\n\n//# sourceURL=webpack:///./src/main/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dev_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dev.service */ \"./src/main/dev.service.ts\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_1__);\n\r\n\r\nconst winURL =  true ? 'http://localhost:9080' : undefined;\r\nlet mainWindow;\r\nfunction createWindow() {\r\n    mainWindow = new electron__WEBPACK_IMPORTED_MODULE_1__[\"BrowserWindow\"]({\r\n        height: 563,\r\n        width: 900,\r\n        // useContentSize:true,\r\n        // frame: process.platform !== 'darwin' ? false : true,\r\n        // titleBarStyle: 'hiddenInset',\r\n        // backgroundColor: '#fff',\r\n        show: false\r\n    });\r\n    mainWindow.loadURL(winURL);\r\n    mainWindow.on('closed', () => {\r\n        mainWindow = null;\r\n        electron__WEBPACK_IMPORTED_MODULE_1__[\"app\"].exit();\r\n    });\r\n    mainWindow.on('ready-to-show', () => {\r\n        mainWindow.show();\r\n        // auto show DevTools\r\n        if (true) {\r\n            mainWindow.webContents.openDevTools();\r\n        }\r\n    });\r\n    mainWindow.flashFrame(true);\r\n}\r\nelectron__WEBPACK_IMPORTED_MODULE_1__[\"app\"].on('ready', createWindow);\r\nelectron__WEBPACK_IMPORTED_MODULE_1__[\"app\"].on('window-all-closed', () => {\r\n    if (process.platform !== 'darwin') {\r\n        electron__WEBPACK_IMPORTED_MODULE_1__[\"app\"].quit();\r\n    }\r\n});\r\nelectron__WEBPACK_IMPORTED_MODULE_1__[\"app\"].on('activate', () => {\r\n    if (mainWindow === null) {\r\n        createWindow();\r\n    }\r\n});\r\n\n\n//# sourceURL=webpack:///./src/main/index.ts?");
 
 /***/ }),
 
