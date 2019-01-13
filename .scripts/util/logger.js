@@ -2,9 +2,7 @@ const chalk = require('chalk')
 const cfonts = require('cfonts')
 function log(type,content){
     console.log(`┏—${type}—————————————————————`)
-    console.log(`\n`)
     console.log(` ${content}`)
-    console.log(`\n`)
     console.log(`┗————————————————————————`)
 }
 
@@ -29,7 +27,7 @@ function info(text){
 }
 
 function logo(text){
-    cfonts.say(text || 'Lemonc',{
+    cfonts.say(text || 'Electron',{
         font: 'simple',
         align: 'left', 
         colors: ['magenta'],

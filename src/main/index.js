@@ -1,3 +1,4 @@
+import './dev.service'
 import { app, BrowserWindow } from 'electron'
 
 const winURL = process.env.NODE_ENV === 'development'  ? 'http://localhost:9080' : `file://${__dirname}/index.html`
@@ -11,7 +12,7 @@ function createWindow(){
         // useContentSize:true,
         // frame: process.platform !== 'darwin' ? false : true,
         // titleBarStyle: 'hiddenInset',
-        // backgroundColor: '#fff',
+        backgroundColor: '#fff',
         show: false
     })
 
@@ -47,19 +48,4 @@ app.on('activate', () => {
         createWindow()
     }
 })
-
-
-// 禁止多个app实例启动
-const shouldQuit = app.makeSingleInstance(() => {
-    if (mainWindow) {
-        if (mainWindow.isMinimized()) {
-            mainWindow.restore()
-            mainWindow.focus()
-        }
-        
-    }
-})
-if (shouldQuit) {
-    app.quit()
-}
   

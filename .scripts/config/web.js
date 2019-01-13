@@ -14,7 +14,7 @@ const renderer = {
     module:{
         rules:[
             {
-                test:/\.(js|jsx)$/,
+                test:/\.js$/,
                 include:path.resolve('src','renderer'),
                 exclude:/node_modules/,
                 use:'babel-loader'
@@ -24,7 +24,7 @@ const renderer = {
                 use:'vue-loader'
             },
             {
-                test:/\.(js|vue)$/,
+                test:/\.js$/,
                 include:path.resolve('src','renderer'),
                 exclude: /node_modules/,
                 use:{
@@ -38,7 +38,6 @@ const renderer = {
                 test:/\.css$/,
                 use:production ? [
                    MiniCssExtractPlugin.loader,
-                    'style-loader',
                     'css-loader'
                 ] : [
                     'style-loader',
@@ -91,11 +90,13 @@ const renderer = {
     },
     resolve: {
         alias: {
-            '@': path.resolve('src','renderer'),
-            'vue$': 'vue/dist/vue.esm.js',
-            'babel-core': path.resolve('node_modules','@babel','core')
+            '@': path.resolve('src'),
+            'vue$': 'vue/dist/vue.esm.js'
         },
-        extensions: ['.js','.jsx', '.vue', '.json', '.css', '.node']
+        extensions: ['.js', '.vue', '.json', '.node']
+    },
+    externals: {
+        electron: ''
     },
     output:{
         path: path.resolve('dist','electron'),
@@ -114,8 +115,7 @@ const renderer = {
                 }
             }
         } : false
-    },
-    stats:'minimal',
+    },  
     plugins:[
         // new webpack.ProgressPlugin(),
         // https://github.com/jantimon/html-webpack-plugin
@@ -134,7 +134,7 @@ const renderer = {
         new VueLoaderPlugin()
     ],
     mode: process.env.NODE_ENV,
-    target: 'electron-renderer'
+    target: 'web'
 }
 
 if(production){

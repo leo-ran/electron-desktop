@@ -5,7 +5,7 @@ module.exports = {
         main:path.resolve('src','main','index.js')
     },
     output:{
-        filename:  '[name].js',
+        filename: '[name].js',
         libraryTarget: 'commonjs2',
         path: path.resolve('dist','electron')
     },
@@ -15,9 +15,7 @@ module.exports = {
                 test:/\.js$/,
                 include:path.resolve('src','main'),
                 exclude:/node_modules/,
-                use:[{
-                    loader:'babel-loader'
-                },{
+                use:['babel-loader',{
                     loader:'eslint-loader',
                     options:{
                         formatter:require('eslint/lib/formatters/stylish')
@@ -31,9 +29,6 @@ module.exports = {
         __filename: process.env.NODE_ENV !== 'production'
     },
     resolve: {
-        alias: {
-            'babel-core': path.resolve('node_modules','@babel','core')
-        },
         extensions: ['.js', '.json', '.node']
     },
     target: 'electron-main',

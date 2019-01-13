@@ -6,11 +6,11 @@
         
         <div class="content">
             <h1>{{title}}</h1>
-            <p><img height="30" src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1841004364,244945169&fm=58&bpow=121&bpoh=75" > <strong>{{nodeVersion}}</strong></p>    
-            <p>Chrome  <strong>{{chromeVersion}}</strong></p>    
-            <p><img height="30" src="https://electronjs.org/"> <strong>{{electronVersion}}</strong></p>
+            <p>Node <strong>{{nodeVersion}}</strong></p>    
+            <p>Chrome <strong>{{chromeVersion}}</strong></p>    
+            <p>Electron <strong>{{electronVersion}}</strong></p>
             <p><a  @click="go(`https://electronjs.org/docs/`)" href="#">Electron docs</a></p>
-            <p><a  @click="go(`https://github.com/ranyunlong/electron-desktop`)" href="#">Lemonc docs</a></p>
+            <p><a  @click="go(`https://github.com/ranyunlong/electron-desktop`)" href="#">Electron-desktop docs</a></p>
         </div>
     </div>
 </template>
@@ -20,7 +20,7 @@
     export default {
         data(){
             return {
-                title: 'Welcome Lemonc for Electron vue',
+                title: 'welcome electron-desktop for Electron vue',
                 nodeVersion:process.versions.node,
                 chromeVersion:process.versions.chrome,
                 electronVersion:process.versions.electron

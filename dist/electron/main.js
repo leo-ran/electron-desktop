@@ -87,6 +87,18 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/main/dev.service.js":
+/*!*********************************!*\
+  !*** ./src/main/dev.service.js ***!
+  \*********************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);\n\n\nif (true) {\n  process.on('message', function (_ref) {\n    var exit = _ref.exit,\n        error = _ref.error;\n\n    if (exit) {\n      electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].exit();\n    } else if (error) {\n      electron__WEBPACK_IMPORTED_MODULE_0__[\"dialog\"].showErrorBox('Main process render Error.', '');\n    }\n  });\n}\n\n//# sourceURL=webpack:///./src/main/dev.service.js?");
+
+/***/ }),
+
 /***/ "./src/main/index.js":
 /*!***************************!*\
   !*** ./src/main/index.js ***!
@@ -95,7 +107,7 @@ module.exports =
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);\n\nvar winURL =  true ? 'http://localhost:9080' : undefined;\nvar mainWindow;\n\nfunction createWindow() {\n  mainWindow = new electron__WEBPACK_IMPORTED_MODULE_0__[\"BrowserWindow\"]({\n    height: 563,\n    width: 900,\n    // useContentSize:true,\n    // frame: process.platform !== 'darwin' ? false : true,\n    // titleBarStyle: 'hiddenInset',\n    // backgroundColor: '#fff',\n    show: false\n  });\n  mainWindow.loadURL(winURL);\n  mainWindow.on('closed', function () {\n    mainWindow = null;\n    electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].exit();\n  });\n  mainWindow.on('ready-to-show', function () {\n    mainWindow.show(); // auto show DevTools\n\n    if (true) {\n      mainWindow.webContents.openDevTools();\n    }\n  });\n  mainWindow.flashFrame(true);\n}\n\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on('ready', createWindow);\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on('window-all-closed', function () {\n  if (process.platform !== 'darwin') {\n    electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].quit();\n  }\n});\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].on('activate', function () {\n  if (mainWindow === null) {\n    createWindow();\n  }\n}); // 禁止多个app实例启动\n\nvar shouldQuit = electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].makeSingleInstance(function () {\n  if (mainWindow) {\n    if (mainWindow.isMinimized()) {\n      mainWindow.restore();\n      mainWindow.focus();\n    }\n  }\n});\n\nif (shouldQuit) {\n  electron__WEBPACK_IMPORTED_MODULE_0__[\"app\"].quit();\n}\n\n//# sourceURL=webpack:///./src/main/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dev_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dev.service */ \"./src/main/dev.service.js\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_1__);\n\n\nvar winURL =  true ? 'http://localhost:9080' : undefined;\nvar mainWindow;\n\nfunction createWindow() {\n  mainWindow = new electron__WEBPACK_IMPORTED_MODULE_1__[\"BrowserWindow\"]({\n    height: 563,\n    width: 900,\n    // useContentSize:true,\n    // frame: process.platform !== 'darwin' ? false : true,\n    // titleBarStyle: 'hiddenInset',\n    backgroundColor: '#fff',\n    show: false\n  });\n  mainWindow.loadURL(winURL);\n  mainWindow.on('closed', function () {\n    mainWindow = null;\n    electron__WEBPACK_IMPORTED_MODULE_1__[\"app\"].exit();\n  });\n  mainWindow.on('ready-to-show', function () {\n    mainWindow.show(); // auto show DevTools\n\n    if (true) {\n      mainWindow.webContents.openDevTools();\n    }\n  });\n  mainWindow.flashFrame(true);\n}\n\nelectron__WEBPACK_IMPORTED_MODULE_1__[\"app\"].on('ready', createWindow);\nelectron__WEBPACK_IMPORTED_MODULE_1__[\"app\"].on('window-all-closed', function () {\n  if (process.platform !== 'darwin') {\n    electron__WEBPACK_IMPORTED_MODULE_1__[\"app\"].quit();\n  }\n});\nelectron__WEBPACK_IMPORTED_MODULE_1__[\"app\"].on('activate', function () {\n  if (mainWindow === null) {\n    createWindow();\n  }\n});\n\n//# sourceURL=webpack:///./src/main/index.js?");
 
 /***/ }),
 
