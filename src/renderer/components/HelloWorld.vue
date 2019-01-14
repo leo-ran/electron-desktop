@@ -20,7 +20,7 @@
     export default {
         data(){
             return {
-                title: 'welcome electron-desktop for Electron vue',
+                title: 'Electron for vue',
                 nodeVersion:process.versions.node,
                 chromeVersion:process.versions.chrome,
                 electronVersion:process.versions.electron
